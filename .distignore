@@ -1,0 +1,22 @@
+# Files and folders left out of the release zip (see bin/build-zip.sh).
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.distignore
+/.editorconfig
+/bin
+/docs
+/tests
+/node_modules
+/vendor
+/phpcs.xml
+/phpcs.xml.dist
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+*.md
+.DS_Store
+Thumbs.db
+/dist
