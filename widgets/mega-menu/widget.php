@@ -60,6 +60,13 @@ class Mega_Menu extends Widget_Base {
 	private static $item_options = null;
 
 	/**
+	 * Cached top-level item titles for the editor, keyed by item ID.
+	 *
+	 * @var array
+	 */
+	private static $item_titles = [];
+
+	/**
 	 * The current page decides which item is highlighted, so the output is never cached.
 	 *
 	 * @return bool
@@ -113,6 +120,7 @@ class Mega_Menu extends Widget_Base {
 					$title = __( '(no title)', 'wise-addons-for-elementor-pro' );
 				}
 				self::$item_options[ (string) $item->ID ] = $menu->name . ' › ' . $title;
+				self::$item_titles[ (string) $item->ID ]  = $title;
 			}
 		}
 
@@ -144,6 +152,22 @@ class Mega_Menu extends Widget_Base {
 		$fallback = self::js_string( __( 'Choose a menu item', 'wise-addons-for-elementor-pro' ) );
 
 		return '<# var weaMmItems = {' . implode( ',', $pairs ) . '}; #>{{ weaMmItems[ menu_item ] || ' . $fallback . ' }}';
+	}
+
+	/**
+	 * Panel Items row title: "Item › Card title".
+	 *
+	 * @return string
+	 */
+	private static function card_title_field() {
+		self::menu_item_options();
+		$pairs = [];
+		foreach ( self::$item_titles as $id => $title ) {
+			$pairs[] = self::js_string( $id ) . ':' . self::js_string( $title );
+		}
+		$fallback = self::js_string( __( 'Choose a mega item', 'wise-addons-for-elementor-pro' ) );
+
+		return '<# var weaMmTop = {' . implode( ',', $pairs ) . '}; #>{{ ( weaMmTop[ mega_item ] || ' . $fallback . ' ) + ' . self::js_string( ' › ' ) . ' + ( title || "" ) }}';
 	}
 
 	/**
@@ -204,6 +228,7 @@ class Mega_Menu extends Widget_Base {
 	protected function register_controls() {
 		$this->register_menu_content();
 		$this->register_mega_content();
+		$this->register_panel_items_content();
 		$this->register_dropdown_content();
 		$this->register_mobile_content();
 
@@ -211,6 +236,7 @@ class Mega_Menu extends Widget_Base {
 		$this->register_icons_style();
 		$this->register_dropdown_style();
 		$this->register_mega_style();
+		$this->register_cards_style();
 		$this->register_badge_style();
 		$this->register_toggle_style();
 		$this->register_mobile_style();
@@ -258,6 +284,22 @@ class Mega_Menu extends Widget_Base {
 				'options'     => $menus,
 				'default'     => $menus ? (string) array_key_first( $menus ) : '',
 				'description' => $link,
+			]
+		);
+
+		$this->add_control(
+			'design_preset',
+			[
+				'label'       => __( 'Design Preset', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'default',
+				'options'     => [
+					'default'    => __( 'Default', 'wise-addons-for-elementor-pro' ),
+					'wisemattic' => __( 'Wisemattic', 'wise-addons-for-elementor-pro' ),
+					'studio'     => __( 'Studio', 'wise-addons-for-elementor-pro' ),
+					'hub'        => __( 'Product Hub', 'wise-addons-for-elementor-pro' ),
+				],
+				'description' => __( 'A ready-made look for the menu bar, dropdowns, mega panels and cards. Every Style tab setting still overrides it. Wisemattic and Product Hub hide the pointer line unless you give it a color.', 'wise-addons-for-elementor-pro' ),
 			]
 		);
 
@@ -345,6 +387,36 @@ class Mega_Menu extends Widget_Base {
 	 * Content: mega panels, icons and badges for top-level items.
 	 */
 	protected function register_mega_content() {
+		// A panel exists when the item uses built-in cards or has a template.
+		$has_panel = [
+			'relation' => 'or',
+			'terms'    => [
+				[
+					'name'     => 'panel_source',
+					'operator' => '===',
+					'value'    => 'cards',
+				],
+				[
+					'name'     => 'template_id',
+					'operator' => '!==',
+					'value'    => '',
+				],
+			],
+		];
+		$custom    = [
+			'relation' => 'and',
+			'terms'    => [
+				$has_panel,
+				[
+					'name'     => 'panel_width',
+					'operator' => '===',
+					'value'    => 'custom',
+				],
+			],
+		];
+		$cards     = [ 'panel_source' => 'cards' ];
+		$promo     = $cards + [ 'promo_show' => 'yes' ];
+
 		$this->start_controls_section(
 			'section_mega_items',
 			[
@@ -356,7 +428,7 @@ class Mega_Menu extends Widget_Base {
 			'mega_items_note',
 			[
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'Pick a top-level item of the chosen menu and a saved template to show as its mega panel. Items without a template keep their normal dropdown and can still get an icon or a badge.', 'wise-addons-for-elementor-pro' ),
+				'raw'             => esc_html__( 'Pick a top-level item of the chosen menu and give it a mega panel: a saved Elementor template, or built-in cards that you add under Panel Items. Items without a panel keep their normal dropdown and can still get an icon or a badge.', 'wise-addons-for-elementor-pro' ),
 				'content_classes' => 'elementor-descriptor',
 			]
 		);
@@ -375,6 +447,19 @@ class Mega_Menu extends Widget_Base {
 		);
 
 		$repeater->add_control(
+			'panel_source',
+			[
+				'label'   => __( 'Panel Content', 'wise-addons-for-elementor-pro' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'template',
+				'options' => [
+					'template' => __( 'Elementor template', 'wise-addons-for-elementor-pro' ),
+					'cards'    => __( 'Built-in cards', 'wise-addons-for-elementor-pro' ),
+				],
+			]
+		);
+
+		$repeater->add_control(
 			'template_id',
 			[
 				'label'       => __( 'Mega Panel Template', 'wise-addons-for-elementor-pro' ),
@@ -383,21 +468,32 @@ class Mega_Menu extends Widget_Base {
 				'default'     => '',
 				'label_block' => true,
 				'description' => __( 'Create templates under Templates > Saved Templates.', 'wise-addons-for-elementor-pro' ),
+				'condition'   => [ 'panel_source' => 'template' ],
+			]
+		);
+
+		$repeater->add_control(
+			'cards_note',
+			[
+				'type'            => Controls_Manager::RAW_HTML,
+				'raw'             => esc_html__( 'Add the cards under Panel Items below and choose this menu item for each of them.', 'wise-addons-for-elementor-pro' ),
+				'content_classes' => 'elementor-descriptor',
+				'condition'       => $cards,
 			]
 		);
 
 		$repeater->add_control(
 			'panel_width',
 			[
-				'label'     => __( 'Panel Width', 'wise-addons-for-elementor-pro' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'container',
-				'options'   => [
+				'label'      => __( 'Panel Width', 'wise-addons-for-elementor-pro' ),
+				'type'       => Controls_Manager::SELECT,
+				'default'    => 'container',
+				'options'    => [
 					'container' => __( 'Container width', 'wise-addons-for-elementor-pro' ),
 					'full'      => __( 'Full width', 'wise-addons-for-elementor-pro' ),
 					'custom'    => __( 'Custom', 'wise-addons-for-elementor-pro' ),
 				],
-				'condition' => [ 'template_id!' => '' ],
+				'conditions' => $has_panel,
 			]
 		);
 
@@ -424,21 +520,18 @@ class Mega_Menu extends Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} > .wea-mega-menu__mega' => '--wea-mm-cw: {{SIZE}}{{UNIT}};',
 				],
-				'condition'  => [
-					'template_id!' => '',
-					'panel_width'  => 'custom',
-				],
+				'conditions' => $custom,
 			]
 		);
 
 		$repeater->add_control(
 			'panel_align',
 			[
-				'label'     => __( 'Panel Alignment', 'wise-addons-for-elementor-pro' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'default'   => 'start',
-				'toggle'    => false,
-				'options'   => [
+				'label'      => __( 'Panel Alignment', 'wise-addons-for-elementor-pro' ),
+				'type'       => Controls_Manager::CHOOSE,
+				'default'    => 'start',
+				'toggle'     => false,
+				'options'    => [
 					'start'  => [
 						'title' => __( 'Start of item', 'wise-addons-for-elementor-pro' ),
 						'icon'  => 'eicon-align-start-h',
@@ -452,10 +545,205 @@ class Mega_Menu extends Widget_Base {
 						'icon'  => 'eicon-align-end-h',
 					],
 				],
-				'condition' => [
-					'template_id!' => '',
-					'panel_width'  => 'custom',
+				'conditions' => $custom,
+			]
+		);
+
+		$repeater->add_control(
+			'panel_label',
+			[
+				'label'       => __( 'Panel Heading', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'Products', 'wise-addons-for-elementor-pro' ),
+				'dynamic'     => [ 'active' => true ],
+				'separator'   => 'before',
+				'condition'   => $cards,
+			]
+		);
+
+		$repeater->add_responsive_control(
+			'cards_columns',
+			[
+				'label'     => __( 'Columns', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '2',
+				'options'   => [
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
 				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} > .wea-mega-menu__mega' => '--wea-mm-cols: {{VALUE}};',
+				],
+				'condition' => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'cards_layout',
+			[
+				'label'     => __( 'Card Layout', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'side',
+				'options'   => [
+					'side'    => __( 'Icon left, text right', 'wise-addons-for-elementor-pro' ),
+					'top'     => __( 'Icon on top', 'wise-addons-for-elementor-pro' ),
+					'compact' => __( 'Compact list', 'wise-addons-for-elementor-pro' ),
+				],
+				'condition' => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'cards_desc',
+			[
+				'label'        => __( 'Show Descriptions', 'wise-addons-for-elementor-pro' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+				'condition'    => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_show',
+			[
+				'label'        => __( 'Promo Block', 'wise-addons-for-elementor-pro' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => '',
+				'return_value' => 'yes',
+				'separator'    => 'before',
+				'condition'    => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_position',
+			[
+				'label'     => __( 'Promo Position', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'end',
+				'options'   => [
+					'end'    => __( 'Right (end)', 'wise-addons-for-elementor-pro' ),
+					'start'  => __( 'Left (start)', 'wise-addons-for-elementor-pro' ),
+					'bottom' => __( 'Bottom', 'wise-addons-for-elementor-pro' ),
+				],
+				'condition' => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_image',
+			[
+				'label'     => __( 'Promo Image', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::MEDIA,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_title',
+			[
+				'label'       => __( 'Promo Title', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'label_block' => true,
+				'dynamic'     => [ 'active' => true ],
+				'condition'   => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_text',
+			[
+				'label'     => __( 'Promo Text', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::TEXTAREA,
+				'default'   => '',
+				'rows'      => 3,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_button',
+			[
+				'label'     => __( 'Promo Button Text', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => '',
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'promo_link',
+			[
+				'label'     => __( 'Promo Link', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::URL,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $promo,
+			]
+		);
+
+		$repeater->add_control(
+			'footer_note',
+			[
+				'label'       => __( 'Footer Note', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'label_block' => true,
+				'placeholder' => __( 'Free versions on <strong>WordPress.org</strong>', 'wise-addons-for-elementor-pro' ),
+				'description' => __( 'Optional text at the bottom of the panel. &lt;strong&gt; is allowed.', 'wise-addons-for-elementor-pro' ),
+				'dynamic'     => [ 'active' => true ],
+				'separator'   => 'before',
+				'condition'   => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'footer_text',
+			[
+				'label'       => __( 'Footer Link Text', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'View all products →', 'wise-addons-for-elementor-pro' ),
+				'dynamic'     => [ 'active' => true ],
+				'condition'   => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'footer_link',
+			[
+				'label'     => __( 'Footer Link', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::URL,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'footer_text_2',
+			[
+				'label'     => __( 'Second Link Text', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => '',
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $cards,
+			]
+		);
+
+		$repeater->add_control(
+			'footer_link_2',
+			[
+				'label'     => __( 'Second Link', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::URL,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => $cards,
 			]
 		);
 
@@ -513,6 +801,188 @@ class Mega_Menu extends Widget_Base {
 				'fields'        => $repeater->get_controls(),
 				'default'       => [],
 				'title_field'   => self::item_title_field(),
+				'prevent_empty' => false,
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Content: cards for built-in mega panels. One flat list; each card names its mega item.
+	 */
+	protected function register_panel_items_content() {
+		$this->start_controls_section(
+			'section_panel_items',
+			[
+				'label' => __( 'Panel Items', 'wise-addons-for-elementor-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'panel_items_note',
+			[
+				'type'            => Controls_Manager::RAW_HTML,
+				'raw'             => esc_html__( 'Cards for mega items whose Panel Content is Built-in cards. Choose the mega item for each card. Cards next to each other with the same group label form one group.', 'wise-addons-for-elementor-pro' ),
+				'content_classes' => 'elementor-descriptor',
+			]
+		);
+
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+			'mega_item',
+			[
+				'label'       => __( 'Mega Item', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::SELECT2,
+				'options'     => static::menu_item_options(),
+				'default'     => '',
+				'label_block' => true,
+			]
+		);
+
+		$repeater->add_control(
+			'group',
+			[
+				'label'       => __( 'Group Label', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'WordPress Plugins', 'wise-addons-for-elementor-pro' ),
+				'dynamic'     => [ 'active' => true ],
+			]
+		);
+
+		$repeater->add_control(
+			'media',
+			[
+				'label'   => __( 'Visual', 'wise-addons-for-elementor-pro' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'default' => 'icon',
+				'toggle'  => false,
+				'options' => [
+					'icon'  => [
+						'title' => __( 'Icon', 'wise-addons-for-elementor-pro' ),
+						'icon'  => 'eicon-star',
+					],
+					'image' => [
+						'title' => __( 'Image / logo', 'wise-addons-for-elementor-pro' ),
+						'icon'  => 'eicon-image',
+					],
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'icon',
+			[
+				'label'     => __( 'Icon', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::ICONS,
+				'default'   => [
+					'value'   => 'fas fa-cube',
+					'library' => 'fa-solid',
+				],
+				'condition' => [ 'media' => 'icon' ],
+			]
+		);
+
+		$repeater->add_control(
+			'image',
+			[
+				'label'     => __( 'Image', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::MEDIA,
+				'dynamic'   => [ 'active' => true ],
+				'condition' => [ 'media' => 'image' ],
+			]
+		);
+
+		$repeater->add_control(
+			'tile_color',
+			[
+				'label'     => __( 'Tile Color', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}' => '--wea-mm-tile: {{VALUE}};',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'tile_color_2',
+			[
+				'label'       => __( 'Tile Gradient End', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::COLOR,
+				'description' => __( 'Used by presets with solid tiles, such as Wisemattic.', 'wise-addons-for-elementor-pro' ),
+				'selectors'   => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}' => '--wea-mm-tile-2: {{VALUE}};',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'title',
+			[
+				'label'       => __( 'Title', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Product name', 'wise-addons-for-elementor-pro' ),
+				'label_block' => true,
+				'dynamic'     => [ 'active' => true ],
+				'separator'   => 'before',
+			]
+		);
+
+		$repeater->add_control(
+			'description',
+			[
+				'label'   => __( 'Description', 'wise-addons-for-elementor-pro' ),
+				'type'    => Controls_Manager::TEXTAREA,
+				'default' => __( 'One short line about what it does.', 'wise-addons-for-elementor-pro' ),
+				'rows'    => 2,
+				'dynamic' => [ 'active' => true ],
+			]
+		);
+
+		$repeater->add_control(
+			'tag',
+			[
+				'label'       => __( 'Tag', 'wise-addons-for-elementor-pro' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'Shopify App', 'wise-addons-for-elementor-pro' ),
+				'dynamic'     => [ 'active' => true ],
+			]
+		);
+
+		$repeater->add_control(
+			'tag_color',
+			[
+				'label'     => __( 'Tag Color', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}' => '--wea-mm-tag: {{VALUE}};',
+				],
+				'condition' => [ 'tag!' => '' ],
+			]
+		);
+
+		$repeater->add_control(
+			'link',
+			[
+				'label'     => __( 'Link', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::URL,
+				'default'   => [ 'url' => '#' ],
+				'dynamic'   => [ 'active' => true ],
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'panel_items',
+			[
+				'label'         => __( 'Cards', 'wise-addons-for-elementor-pro' ),
+				'type'          => Controls_Manager::REPEATER,
+				'fields'        => $repeater->get_controls(),
+				'default'       => [],
+				'title_field'   => self::card_title_field(),
 				'prevent_empty' => false,
 			]
 		);
@@ -1321,6 +1791,204 @@ class Mega_Menu extends Widget_Base {
 	}
 
 	/**
+	 * Add a control that writes one custom property on the root.
+	 *
+	 * @param string $id       Control ID.
+	 * @param string $label    Label.
+	 * @param string $property Custom property.
+	 * @param string $type     color or slider.
+	 * @param array  $extra    Extra args.
+	 */
+	private function add_var_control( $id, $label, $property, $type = 'color', array $extra = [] ) {
+		$args = [
+			'label' => $label,
+		];
+		if ( 'color' === $type ) {
+			$args['type']      = Controls_Manager::COLOR;
+			$args['selectors'] = [ '{{WRAPPER}} .wea-mega-menu' => $property . ': {{VALUE}};' ];
+			$this->add_control( $id, $extra + $args );
+			return;
+		}
+		$args['type']       = Controls_Manager::SLIDER;
+		$args['size_units'] = [ 'px', 'em', 'rem' ];
+		$args['range']      = [
+			'px' => [
+				'min' => 0,
+				'max' => 80,
+			],
+		];
+		$args['selectors']  = [ '{{WRAPPER}} .wea-mega-menu' => $property . ': {{SIZE}}{{UNIT}};' ];
+		$this->add_responsive_control( $id, $extra + $args );
+	}
+
+	/**
+	 * Style: built-in mega panel cards, groups, promo and footer.
+	 */
+	protected function register_cards_style() {
+		$this->start_controls_section(
+			'section_style_cards',
+			[
+				'label' => __( 'Panel Cards', 'wise-addons-for-elementor-pro' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'cards_style_note',
+			[
+				'type'            => Controls_Manager::RAW_HTML,
+				'raw'             => esc_html__( 'For mega items that use Built-in cards. Empty settings follow the design preset.', 'wise-addons-for-elementor-pro' ),
+				'content_classes' => 'elementor-descriptor',
+			]
+		);
+
+		$this->add_var_control( 'cards_gap', __( 'Space Between Cards', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-gap', 'slider' );
+
+		$this->add_responsive_control(
+			'card_padding',
+			[
+				'label'      => __( 'Card Padding', 'wise-addons-for-elementor-pro' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', 'rem' ],
+				'selectors'  => [
+					'{{WRAPPER}} .wea-mega-menu' => '--wea-mm-card-pad: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_var_control( 'card_radius', __( 'Card Border Radius', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-radius', 'slider' );
+		$this->add_var_control( 'card_bg_hover', __( 'Card Hover Background', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-bg-h' );
+
+		$this->add_control(
+			'card_title_heading',
+			[
+				'label'     => __( 'Title', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'card_title_typography',
+				'selector' => '{{WRAPPER}} .wea-mega-menu__card-title',
+			]
+		);
+
+		$this->add_var_control( 'card_title_color', __( 'Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-title-c' );
+		$this->add_var_control( 'card_title_color_hover', __( 'Hover Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-title-c-h' );
+
+		$this->add_control(
+			'card_desc_heading',
+			[
+				'label'     => __( 'Description', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'card_desc_typography',
+				'selector' => '{{WRAPPER}} .wea-mega-menu__card-desc',
+			]
+		);
+
+		$this->add_var_control( 'card_desc_color', __( 'Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-card-desc-c' );
+
+		$this->add_control(
+			'card_tile_heading',
+			[
+				'label'     => __( 'Icon Tile', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_var_control( 'card_tile_size', __( 'Tile Size', 'wise-addons-for-elementor-pro' ), '--wea-mm-tile-size', 'slider' );
+		$this->add_var_control( 'card_tile_icon_size', __( 'Icon Size', 'wise-addons-for-elementor-pro' ), '--wea-mm-tile-icon', 'slider' );
+		$this->add_var_control( 'card_tile_radius', __( 'Tile Border Radius', 'wise-addons-for-elementor-pro' ), '--wea-mm-tile-radius', 'slider' );
+		$this->add_var_control(
+			'card_tile_default',
+			__( 'Default Tile Color', 'wise-addons-for-elementor-pro' ),
+			'--wea-mm-tile-default',
+			'color',
+			[ 'description' => __( 'Used by cards without their own tile color.', 'wise-addons-for-elementor-pro' ) ]
+		);
+
+		$this->add_control(
+			'card_labels_heading',
+			[
+				'label'     => __( 'Headings & Tags', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'card_group_typography',
+				'label'    => __( 'Group Label Typography', 'wise-addons-for-elementor-pro' ),
+				'selector' => '{{WRAPPER}} .wea-mega-menu__group-label',
+			]
+		);
+
+		$this->add_var_control( 'card_group_color', __( 'Group Label Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-group-c' );
+		$this->add_var_control( 'card_board_label_color', __( 'Panel Heading Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-board-label-c' );
+		$this->add_var_control( 'card_tag_default', __( 'Default Tag Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-tag-default' );
+
+		$this->add_control(
+			'card_promo_heading',
+			[
+				'label'     => __( 'Promo', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'card_promo_width',
+			[
+				'label'      => __( 'Width (beside the cards)', 'wise-addons-for-elementor-pro' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min' => 160,
+						'max' => 480,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .wea-mega-menu' => '--wea-mm-promo-w: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_var_control( 'card_promo_bg', __( 'Background Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-promo-bg' );
+		$this->add_var_control( 'card_promo_title_color', __( 'Title Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-promo-title-c' );
+		$this->add_var_control( 'card_promo_button_bg', __( 'Button Background', 'wise-addons-for-elementor-pro' ), '--wea-mm-promo-btn-bg' );
+		$this->add_var_control( 'card_promo_button_color', __( 'Button Text Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-promo-btn-c' );
+
+		$this->add_control(
+			'card_footer_heading',
+			[
+				'label'     => __( 'Footer', 'wise-addons-for-elementor-pro' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_var_control( 'card_footer_link_color', __( 'Link Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-foot-c' );
+		$this->add_var_control( 'card_footer_link_bg', __( 'Link Background', 'wise-addons-for-elementor-pro' ), '--wea-mm-foot-bg' );
+		$this->add_var_control( 'card_footer_border', __( 'Divider Color', 'wise-addons-for-elementor-pro' ), '--wea-mm-foot-bc' );
+
+		$this->end_controls_section();
+	}
+
+	/**
 	 * Style: badges.
 	 */
 	protected function register_badge_style() {
@@ -1879,24 +2547,38 @@ class Mega_Menu extends Widget_Base {
 	}
 
 	/**
-	 * Icons, badges and rendered mega templates for the menu's top-level items.
+	 * Icons, badges and panel HTML for the menu's top-level items.
 	 *
 	 * @param array      $s     Settings.
 	 * @param \WP_Post[] $items Menu items.
-	 * @return array [ extras keyed by item ID, template HTML keyed by item ID ]
+	 * @param string     $uid   ID prefix.
+	 * @return array [ extras keyed by item ID, panels keyed by item ID as [ type, html ] ]
 	 */
-	protected function collect_extras( array $s, array $items ) {
-		$top = [];
+	protected function collect_extras( array $s, array $items, $uid ) {
+		$top    = [];
+		$titles = [];
 		foreach ( $items as $item ) {
 			if ( 0 === (int) $item->menu_item_parent ) {
-				$top[ (int) $item->ID ] = true;
+				$top[ (int) $item->ID ]    = true;
+				$titles[ (int) $item->ID ] = trim( wp_strip_all_tags( (string) $item->title ) );
+			}
+		}
+
+		// Built-in cards, grouped by the mega item they belong to.
+		$cards = [];
+		if ( isset( $s['panel_items'] ) && is_array( $s['panel_items'] ) ) {
+			foreach ( $s['panel_items'] as $card ) {
+				$owner = isset( $card['mega_item'] ) ? absint( $card['mega_item'] ) : 0;
+				if ( $owner && isset( $top[ $owner ] ) ) {
+					$cards[ $owner ][] = $card;
+				}
 			}
 		}
 
 		$rows         = isset( $s['mega_items'] ) && is_array( $s['mega_items'] ) ? $s['mega_items'] : [];
 		$allow_panels = self::$depth <= self::MAX_DEPTH;
 		$extras       = [];
-		$templates    = [];
+		$panels       = [];
 		$cache        = [];
 
 		foreach ( $rows as $row ) {
@@ -1905,17 +2587,26 @@ class Mega_Menu extends Widget_Base {
 				continue;
 			}
 
-			$width = isset( $row['panel_width'] ) && in_array( $row['panel_width'], [ 'container', 'full', 'custom' ], true ) ? $row['panel_width'] : 'container';
-			$align = isset( $row['panel_align'] ) && in_array( $row['panel_align'], [ 'start', 'center', 'end' ], true ) ? $row['panel_align'] : 'start';
-			$tid   = isset( $row['template_id'] ) ? absint( $row['template_id'] ) : 0;
-			$html  = '';
+			$source = isset( $row['panel_source'] ) && 'cards' === $row['panel_source'] ? 'cards' : 'template';
+			$width  = isset( $row['panel_width'] ) && in_array( $row['panel_width'], [ 'container', 'full', 'custom' ], true ) ? $row['panel_width'] : 'container';
+			$align  = isset( $row['panel_align'] ) && in_array( $row['panel_align'], [ 'start', 'center', 'end' ], true ) ? $row['panel_align'] : 'start';
+			$html   = '';
 
-			// Each template renders once per menu; the stack in Saved_Template stops a panel from including itself.
-			if ( $tid && $allow_panels ) {
-				if ( ! isset( $cache[ $tid ] ) ) {
-					$cache[ $tid ] = $this->saved_template_html( $tid );
+			if ( 'cards' === $source ) {
+				if ( ! empty( $cards[ $id ] ) ) {
+					$html = $this->board_html( $row, $cards[ $id ], $uid . '-b' . $id, isset( $titles[ $id ] ) ? $titles[ $id ] : '' );
+				} else {
+					$html = $this->saved_template_notice( __( 'Add cards for this item under Panel Items.', 'wise-addons-for-elementor-pro' ) );
 				}
-				$html = $cache[ $tid ];
+			} else {
+				$tid = isset( $row['template_id'] ) ? absint( $row['template_id'] ) : 0;
+				// Each template renders once per menu; the stack in Saved_Template stops a panel from including itself.
+				if ( $tid && $allow_panels ) {
+					if ( ! isset( $cache[ $tid ] ) ) {
+						$cache[ $tid ] = $this->saved_template_html( $tid );
+					}
+					$html = $cache[ $tid ];
+				}
 			}
 
 			$icon = '';
@@ -1924,20 +2615,251 @@ class Mega_Menu extends Widget_Base {
 			}
 
 			$extras[ $id ] = [
-				'rid'   => isset( $row['_id'] ) ? sanitize_html_class( $row['_id'] ) : '',
-				'panel' => '' !== trim( $html ),
-				'width' => $width,
-				'align' => $align,
-				'icon'  => $icon,
-				'badge' => isset( $row['badge_text'] ) ? trim( wp_strip_all_tags( (string) $row['badge_text'] ) ) : '',
+				'rid'    => isset( $row['_id'] ) ? sanitize_html_class( $row['_id'] ) : '',
+				'panel'  => '' !== trim( $html ),
+				'source' => $source,
+				'width'  => $width,
+				'align'  => $align,
+				'icon'   => $icon,
+				'badge'  => isset( $row['badge_text'] ) ? trim( wp_strip_all_tags( (string) $row['badge_text'] ) ) : '',
 			];
 
 			if ( $extras[ $id ]['panel'] ) {
-				$templates[ $id ] = $html;
+				$panels[ $id ] = [
+					'type' => $source,
+					'html' => $html,
+				];
 			}
 		}
 
-		return [ $extras, $templates ];
+		return [ $extras, $panels ];
+	}
+
+	/**
+	 * Split a number of columns between groups, in proportion to their card counts.
+	 * Every group gets at least one column.
+	 *
+	 * @param int[] $counts Cards per group.
+	 * @param int   $cols   Columns.
+	 * @return int[]
+	 */
+	private static function group_spans( array $counts, $cols ) {
+		$spans = array_fill( 0, count( $counts ), 1 );
+		$total = max( 1, array_sum( $counts ) );
+		$extra = [];
+		foreach ( $counts as $i => $count ) {
+			$extra[ $i ] = $count / $total * $cols - 1;
+		}
+		for ( $left = $cols - count( $counts ); $left > 0; $left-- ) {
+			$best = array_keys( $extra, max( $extra ), true );
+			$pick = $best[0];
+			++$spans[ $pick ];
+			--$extra[ $pick ];
+		}
+		return $spans;
+	}
+
+	/**
+	 * An image from a MEDIA control value.
+	 *
+	 * @param array  $media MEDIA value.
+	 * @param string $size  Image size.
+	 * @param array  $attrs Extra attributes.
+	 * @return string
+	 */
+	private static function media_image( $media, $size, array $attrs ) {
+		if ( ! is_array( $media ) || empty( $media['url'] ) ) {
+			return '';
+		}
+		$attrs += [
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+		];
+		if ( ! empty( $media['id'] ) ) {
+			$html = wp_get_attachment_image( absint( $media['id'] ), $size, false, $attrs );
+			if ( $html ) {
+				return $html;
+			}
+		}
+		$out = '<img src="' . esc_url( $media['url'] ) . '"';
+		foreach ( $attrs as $name => $value ) {
+			$out .= ' ' . $name . '="' . esc_attr( $value ) . '"';
+		}
+		return $out . ( isset( $attrs['alt'] ) ? '' : ' alt=""' ) . '>';
+	}
+
+	/**
+	 * A link from a URL control value, or an empty string.
+	 *
+	 * @param string $key   Render attribute key (unique per render).
+	 * @param array  $link  URL control value.
+	 * @param string $class Class names.
+	 * @param string $text  Link text.
+	 * @return string
+	 */
+	private function link_html( $key, $link, $class, $text ) {
+		if ( '' === trim( (string) $text ) || ! is_array( $link ) || empty( $link['url'] ) ) {
+			return '';
+		}
+		$this->add_render_attribute( $key, 'class', $class );
+		$this->add_link_attributes( $key, $link );
+		return '<a ' . $this->get_render_attribute_string( $key ) . '>' . esc_html( $text ) . '</a>';
+	}
+
+	/**
+	 * One card: a single link named by its title and described by its tag and description.
+	 *
+	 * @param array  $card      Panel Items row.
+	 * @param bool   $show_desc Print the description.
+	 * @param string $base      Unique ID base.
+	 * @return string
+	 */
+	protected function card_html( array $card, $show_desc, $base ) {
+		$rid   = isset( $card['_id'] ) ? sanitize_html_class( (string) $card['_id'] ) : '';
+		$key   = 'card_' . $base;
+		$title = isset( $card['title'] ) ? trim( wp_strip_all_tags( (string) $card['title'] ) ) : '';
+		$desc  = $show_desc && isset( $card['description'] ) ? trim( wp_strip_all_tags( (string) $card['description'] ) ) : '';
+		$tag   = isset( $card['tag'] ) ? trim( wp_strip_all_tags( (string) $card['tag'] ) ) : '';
+		$link  = isset( $card['link'] ) && is_array( $card['link'] ) ? $card['link'] : [];
+		$is_a  = ! empty( $link['url'] );
+
+		$this->add_render_attribute( $key, 'class', [ 'wea-mega-menu__card', $rid ? 'elementor-repeater-item-' . $rid : '' ] );
+		if ( $is_a ) {
+			$this->add_link_attributes( $key, $link );
+			$this->add_render_attribute( $key, 'aria-labelledby', $base . '-t' );
+			$described = array_filter( [ '' !== $tag ? $base . '-g' : '', '' !== $desc ? $base . '-d' : '' ] );
+			if ( $described ) {
+				$this->add_render_attribute( $key, 'aria-describedby', implode( ' ', $described ) );
+			}
+		}
+
+		$visual = '';
+		if ( isset( $card['media'] ) && 'image' === $card['media'] ) {
+			$img = self::media_image(
+				isset( $card['image'] ) ? $card['image'] : [],
+				'thumbnail',
+				[
+					'alt'    => '',
+					'width'  => '96',
+					'height' => '96',
+				]
+			);
+			if ( $img ) {
+				$visual = '<span class="wea-mega-menu__card-icon wea-mega-menu__card-icon--image" aria-hidden="true">' . $img . '</span>';
+			}
+		} elseif ( ! empty( $card['icon']['value'] ) ) {
+			$visual = '<span class="wea-mega-menu__card-icon" aria-hidden="true">' . Icons_Manager::try_get_icon_html( $card['icon'], [ 'aria-hidden' => 'true' ] ) . '</span>';
+		}
+
+		$tagname = $is_a ? 'a' : 'div';
+		$html    = '<' . $tagname . ' ' . $this->get_render_attribute_string( $key ) . '>' . $visual;
+		$html   .= '<span class="wea-mega-menu__card-body"><span class="wea-mega-menu__card-head">';
+		$html   .= '<span class="wea-mega-menu__card-title" id="' . esc_attr( $base . '-t' ) . '">' . esc_html( $title ) . '</span>';
+		if ( '' !== $tag ) {
+			$html .= '<span class="wea-mega-menu__card-tag" id="' . esc_attr( $base . '-g' ) . '">' . esc_html( $tag ) . '</span>';
+		}
+		$html .= '</span>';
+		if ( '' !== $desc ) {
+			$html .= '<span class="wea-mega-menu__card-desc" id="' . esc_attr( $base . '-d' ) . '">' . esc_html( $desc ) . '</span>';
+		}
+		$html .= '</span></' . $tagname . '>';
+
+		return $html;
+	}
+
+	/**
+	 * A built-in mega panel: heading, card groups, promo and footer.
+	 *
+	 * @param array  $row        Mega Items row.
+	 * @param array  $cards      Panel Items rows for this item, in order.
+	 * @param string $base       Unique ID base.
+	 * @param string $item_title Menu item title, names lists without a group label.
+	 * @return string
+	 */
+	protected function board_html( array $row, array $cards, $base, $item_title ) {
+		$layout   = isset( $row['cards_layout'] ) && in_array( $row['cards_layout'], [ 'side', 'top', 'compact' ], true ) ? $row['cards_layout'] : 'side';
+		$desc     = ! isset( $row['cards_desc'] ) || 'yes' === $row['cards_desc'];
+		$cols     = isset( $row['cards_columns'] ) && is_numeric( $row['cards_columns'] ) ? max( 1, min( 4, (int) $row['cards_columns'] ) ) : 2;
+		$promo    = ! empty( $row['promo_show'] ) && 'yes' === $row['promo_show'];
+		$position = isset( $row['promo_position'] ) && in_array( $row['promo_position'], [ 'start', 'end', 'bottom' ], true ) ? $row['promo_position'] : 'end';
+		$label    = isset( $row['panel_label'] ) ? trim( wp_strip_all_tags( (string) $row['panel_label'] ) ) : '';
+
+		// Cards next to each other with the same label form one group.
+		$groups = [];
+		foreach ( $cards as $card ) {
+			$name = isset( $card['group'] ) ? trim( wp_strip_all_tags( (string) $card['group'] ) ) : '';
+			$last = count( $groups ) - 1;
+			if ( $last >= 0 && $groups[ $last ]['label'] === $name ) {
+				$groups[ $last ]['cards'][] = $card;
+			} else {
+				$groups[] = [
+					'label' => $name,
+					'cards' => [ $card ],
+				];
+			}
+		}
+
+		// Several groups side by side share the columns; more groups than columns stack.
+		$split = count( $groups ) > 1 && count( $groups ) <= $cols;
+		$spans = $split ? self::group_spans( array_map( 'count', array_column( $groups, 'cards' ) ), $cols ) : [];
+
+		$classes = [
+			'wea-mega-menu__board',
+			'wea-mega-menu__board--' . $layout,
+			$promo ? 'wea-mega-menu__board--promo-' . $position : '',
+		];
+
+		$html = '<div class="' . esc_attr( implode( ' ', array_filter( $classes ) ) ) . '">';
+		if ( '' !== $label ) {
+			$html .= '<span class="wea-mega-menu__board-label">' . esc_html( $label ) . '</span>';
+		}
+
+		$html .= '<div class="wea-mega-menu__board-main' . ( $split ? ' wea-mega-menu__board-main--split' : '' ) . '">';
+		foreach ( $groups as $g => $group ) {
+			$gid   = $base . '-g' . $g;
+			$html .= '<div class="wea-mega-menu__group' . ( $split ? ' wea-mega-menu__group--span-' . (int) $spans[ $g ] : '' ) . '">';
+			if ( '' !== $group['label'] ) {
+				$html .= '<span class="wea-mega-menu__group-label" id="' . esc_attr( $gid ) . '">' . esc_html( $group['label'] ) . '</span>';
+				$html .= '<ul class="wea-mega-menu__cards" aria-labelledby="' . esc_attr( $gid ) . '">';
+			} else {
+				$html .= '<ul class="wea-mega-menu__cards" aria-label="' . esc_attr( $item_title ) . '">';
+			}
+			foreach ( $group['cards'] as $c => $card ) {
+				$html .= '<li class="wea-mega-menu__cards-item">' . $this->card_html( $card, $desc, $gid . 'c' . $c ) . '</li>';
+			}
+			$html .= '</ul></div>';
+		}
+		$html .= '</div>';
+
+		if ( $promo ) {
+			$parts = self::media_image( isset( $row['promo_image'] ) ? $row['promo_image'] : [], 'medium_large', [ 'class' => 'wea-mega-menu__promo-image' ] );
+			foreach ( [ 'promo_title' => 'title', 'promo_text' => 'text' ] as $field => $suffix ) {
+				$value = isset( $row[ $field ] ) ? trim( wp_strip_all_tags( (string) $row[ $field ] ) ) : '';
+				if ( '' !== $value ) {
+					$parts .= '<span class="wea-mega-menu__promo-' . $suffix . '">' . esc_html( $value ) . '</span>';
+				}
+			}
+			$parts .= $this->link_html( 'promo_' . $base, isset( $row['promo_link'] ) ? $row['promo_link'] : [], 'wea-mega-menu__promo-button', isset( $row['promo_button'] ) ? $row['promo_button'] : '' );
+			if ( '' !== $parts ) {
+				$html .= '<div class="wea-mega-menu__promo">' . $parts . '</div>';
+			}
+		}
+
+		$note  = isset( $row['footer_note'] ) ? trim( wp_kses( (string) $row['footer_note'], [ 'strong' => [], 'b' => [], 'em' => [] ] ) ) : '';
+		$links = $this->link_html( 'foot1_' . $base, isset( $row['footer_link'] ) ? $row['footer_link'] : [], 'wea-mega-menu__board-link', isset( $row['footer_text'] ) ? $row['footer_text'] : '' );
+		$links .= $this->link_html( 'foot2_' . $base, isset( $row['footer_link_2'] ) ? $row['footer_link_2'] : [], 'wea-mega-menu__board-link wea-mega-menu__board-link--alt', isset( $row['footer_text_2'] ) ? $row['footer_text_2'] : '' );
+		if ( '' !== $note || '' !== $links ) {
+			$html .= '<div class="wea-mega-menu__board-foot">';
+			if ( '' !== $note ) {
+				$html .= '<span class="wea-mega-menu__board-note">' . $note . '</span>';
+			}
+			if ( '' !== $links ) {
+				$html .= '<span class="wea-mega-menu__board-links">' . $links . '</span>';
+			}
+			$html .= '</div>';
+		}
+
+		return $html . '</div>';
 	}
 
 	/**
@@ -1963,8 +2885,9 @@ class Mega_Menu extends Widget_Base {
 		$label     = isset( $s['toggle_label'] ) && '' !== trim( (string) $s['toggle_label'] ) ? trim( (string) $s['toggle_label'] ) : __( 'Menu', 'wise-addons-for-elementor-pro' );
 		$nav_label = isset( $s['nav_label'] ) && '' !== trim( (string) $s['nav_label'] ) ? trim( (string) $s['nav_label'] ) : $menu->name;
 		$offcanvas = $bp && 'offcanvas' === $m_style;
+		$preset    = isset( $s['design_preset'] ) && in_array( $s['design_preset'], [ 'default', 'wisemattic', 'studio', 'hub' ], true ) ? $s['design_preset'] : 'default';
 
-		list( $extras, $templates ) = $this->collect_extras( $s, $items );
+		list( $extras, $panels ) = $this->collect_extras( $s, $items, $uid );
 
 		$walker = new Mega_Menu_Walker( $uid, $extras, self::indicator_svg( $indicator ) );
 
@@ -1990,6 +2913,7 @@ class Mega_Menu extends Widget_Base {
 				'class'               => [
 					'wea-mega-menu',
 					'wea-mega-menu--' . $layout,
+					'wea-mega-menu--preset-' . $preset,
 					'wea-mega-menu--trigger-' . $trigger,
 					'wea-mega-menu--anim-' . $animation,
 					'wea-mega-menu--pointer-' . $pointer,
@@ -2052,8 +2976,14 @@ class Mega_Menu extends Widget_Base {
 					foreach ( (array) $parts as $i => $part ) {
 						if ( $i % 2 ) {
 							$item_id = (int) $part;
-							if ( isset( $templates[ $item_id ] ) ) {
-								$this->print_saved_template_item_html( $templates[ $item_id ] );
+							if ( ! isset( $panels[ $item_id ] ) ) {
+								continue;
+							}
+							if ( 'cards' === $panels[ $item_id ]['type'] ) {
+								// Built from escaped parts in board_html(); printed through the same allow list as the menu.
+								echo wp_kses( $panels[ $item_id ]['html'], $allowed );
+							} else {
+								$this->print_saved_template_item_html( $panels[ $item_id ]['html'] );
 							}
 						} else {
 							echo wp_kses( $part, $allowed );

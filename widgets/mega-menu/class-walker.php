@@ -237,7 +237,7 @@ class Mega_Menu_Walker extends \Walker_Nav_Menu {
 		$extras = $this->extras_for( $data_object, $depth );
 
 		if ( $extras && ! empty( $extras['panel'] ) ) {
-			$classes = [ 'wea-mega-menu__mega', 'wea-mega-menu__mega--' . $extras['width'] ];
+			$classes = [ 'wea-mega-menu__mega', 'wea-mega-menu__mega--' . $extras['width'], 'wea-mega-menu__mega--' . ( isset( $extras['source'] ) && 'cards' === $extras['source'] ? 'cards' : 'template' ) ];
 
 			$output .= '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . esc_attr( $this->mega_id( $data_object->ID ) ) . '"';
 			$output .= ' data-width="' . esc_attr( $extras['width'] ) . '" data-align="' . esc_attr( $extras['align'] ) . '">';

@@ -416,10 +416,11 @@
 	inline-size: max-content;
 	min-inline-size: var(--wea-mm-dd-w, 220px);
 	max-inline-size: min(360px, 92vw);
-	padding: 8px 0;
-	border-radius: 10px;
-	background-color: #fff;
-	box-shadow: 0 18px 40px -14px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06);
+	padding: var(--wea-mm-dd-pad, 8px 0);
+	border: var(--wea-mm-dd-border, 0 solid transparent);
+	border-radius: var(--wea-mm-dd-radius, 10px);
+	background-color: var(--wea-mm-dd-bg, #fff);
+	box-shadow: var(--wea-mm-dd-shadow, 0 18px 40px -14px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06));
 }
 
 .wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__sub,
@@ -499,10 +500,11 @@
 	left: var(--wea-mm-x, 0);
 	inline-size: var(--wea-mm-w, 100%);
 	max-inline-size: 100vw;
-	padding: 24px;
-	border-radius: 10px;
-	background-color: #fff;
-	box-shadow: 0 24px 48px -16px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06);
+	padding: var(--wea-mm-mega-pad, 24px);
+	border: var(--wea-mm-mega-border, 0 solid transparent);
+	border-radius: var(--wea-mm-mega-radius, 10px);
+	background: var(--wea-mm-mega-bg, #fff);
+	box-shadow: var(--wea-mm-mega-shadow, 0 24px 48px -16px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06));
 }
 
 .wea-mega-menu:not(.is-mobile) .wea-mega-menu__mega--custom {
@@ -594,6 +596,405 @@
 		opacity: 0;
 		transform: translateY(10px);
 	}
+}
+
+/* ------------------------------------------------------------------ */
+/* Built-in panels: heading, card groups, promo, footer                */
+/* ------------------------------------------------------------------ */
+
+.wea-mega-menu__board {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wea-mm-board-gap, 18px) var(--wea-mm-board-col-gap, 24px);
+	align-items: start;
+	text-align: start;
+}
+
+.wea-mega-menu__board > * {
+	grid-column: 1 / -1;
+}
+
+.wea-mega-menu__board-label {
+	order: 0;
+	color: var(--wea-mm-board-label-c, var(--e-global-color-accent, #5b4cf5));
+	font-size: 11px;
+	font-weight: 800;
+	letter-spacing: .12em;
+	line-height: 1.3;
+	text-transform: uppercase;
+}
+
+.wea-mega-menu__board-main {
+	order: 2;
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__promo {
+	order: 3;
+}
+
+.wea-mega-menu__board-foot {
+	order: 4;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-end {
+	grid-template-columns: minmax(0, 1fr) var(--wea-mm-promo-w, 260px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-start {
+	grid-template-columns: var(--wea-mm-promo-w, 260px) minmax(0, 1fr);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-end > .wea-mega-menu__board-main {
+	grid-column: 1;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-end > .wea-mega-menu__promo {
+	grid-column: 2;
+	align-self: stretch;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-start > .wea-mega-menu__promo {
+	order: 1;
+	grid-column: 1;
+	align-self: stretch;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__board--promo-start > .wea-mega-menu__board-main {
+	grid-column: 2;
+}
+
+/* Full-width panels keep their cards in line with the page container. */
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__mega--full .wea-mega-menu__board {
+	max-inline-size: var(--wea-mm-inner-w, none);
+	margin-inline: auto;
+}
+
+/* Groups */
+.wea-mega-menu__board-main--split {
+	display: flex;
+	gap: var(--wea-mm-group-gap, 24px);
+}
+
+.wea-mega-menu__board-main--split > .wea-mega-menu__group {
+	flex: var(--wea-mm-span, 1) 1 0;
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__board-main:not(.wea-mega-menu__board-main--split) > .wea-mega-menu__group + .wea-mega-menu__group {
+	margin-block-start: 18px;
+}
+
+.wea-mega-menu__group--span-1 {
+	--wea-mm-span: 1;
+}
+
+.wea-mega-menu__group--span-2 {
+	--wea-mm-span: 2;
+}
+
+.wea-mega-menu__group--span-3 {
+	--wea-mm-span: 3;
+}
+
+.wea-mega-menu__group--span-4 {
+	--wea-mm-span: 4;
+}
+
+.wea-mega-menu__group-label {
+	display: block;
+	margin-block-end: 8px;
+	padding-inline: var(--wea-mm-group-indent, 12px);
+	color: var(--wea-mm-group-c, #94a3b8);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
+/* Cards */
+.wea-mega-menu__cards {
+	display: grid;
+	grid-template-columns: repeat(var(--wea-mm-span, var(--wea-mm-cols, 2)), minmax(0, 1fr));
+	gap: var(--wea-mm-card-gap, 6px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-mega-menu__cards-item {
+	display: flex;
+	min-inline-size: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-mega-menu__cards-item::marker {
+	content: none;
+}
+
+.wea-mega-menu__card {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: flex-start;
+	gap: var(--wea-mm-card-inner-gap, 12px);
+	box-sizing: border-box;
+	min-inline-size: 0;
+	padding: var(--wea-mm-card-pad, 10px 12px);
+	border: 1px solid transparent;
+	border-radius: var(--wea-mm-card-radius, 10px);
+	background-color: transparent;
+	text-align: start;
+	transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.elementor .wea-mega-menu__card,
+.elementor .wea-mega-menu__card:hover,
+.elementor .wea-mega-menu__card:focus,
+.elementor .wea-mega-menu__card:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+a.wea-mega-menu__card:hover,
+a.wea-mega-menu__card:focus-visible {
+	border-color: var(--wea-mm-card-bc-h, transparent);
+	background-color: var(--wea-mm-card-bg-h, rgba(15, 23, 42, .045));
+	box-shadow: var(--wea-mm-card-shadow-h, none);
+}
+
+a.wea-mega-menu__card:focus-visible {
+	outline: 2px solid var(--wea-mm-card-title-c-h, var(--e-global-color-accent, #5b4cf5));
+	outline-offset: 2px;
+}
+
+.wea-mega-menu__card-icon {
+	--wea-mm-tile-cur: var(--wea-mm-tile, var(--wea-mm-tile-default, var(--e-global-color-accent, #5b4cf5)));
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	inline-size: var(--wea-mm-tile-size, 40px);
+	block-size: var(--wea-mm-tile-size, 40px);
+	border-radius: var(--wea-mm-tile-radius, 10px);
+	background: color-mix(in srgb, var(--wea-mm-tile-cur) 13%, transparent);
+	color: var(--wea-mm-tile-cur);
+	font-size: var(--wea-mm-tile-icon, 18px);
+	line-height: 1;
+	transition: transform .2s ease;
+}
+
+.wea-mega-menu__card-icon svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.wea-mega-menu__card-icon--image {
+	overflow: hidden;
+	background: none;
+}
+
+.wea-mega-menu__card-icon img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
+}
+
+.wea-mega-menu__card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__card-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 8px;
+}
+
+.wea-mega-menu__card-title {
+	color: var(--wea-mm-card-title-c, #111827);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+	transition: color .18s ease;
+}
+
+a.wea-mega-menu__card:hover .wea-mega-menu__card-title,
+a.wea-mega-menu__card:focus-visible .wea-mega-menu__card-title {
+	color: var(--wea-mm-card-title-c-h, var(--e-global-color-accent, #5b4cf5));
+}
+
+.wea-mega-menu__card-desc {
+	color: var(--wea-mm-card-desc-c, #6b7280);
+	font-size: 13px;
+	line-height: 1.45;
+}
+
+.wea-mega-menu__card-tag {
+	--wea-mm-tag-cur: var(--wea-mm-tag, var(--wea-mm-tag-default, var(--e-global-color-accent, #5b4cf5)));
+	display: inline-block;
+	padding: 2px 7px;
+	border-radius: var(--wea-mm-tag-radius, 999px);
+	background-color: color-mix(in srgb, var(--wea-mm-tag-cur) 12%, transparent);
+	color: var(--wea-mm-tag-cur);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: .05em;
+	line-height: 1.5;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.wea-mega-menu__board--top .wea-mega-menu__card {
+	flex-direction: column;
+	gap: 10px;
+}
+
+.wea-mega-menu__board--compact .wea-mega-menu__card {
+	align-items: center;
+	gap: 10px;
+	padding: var(--wea-mm-card-pad, 7px 10px);
+}
+
+.wea-mega-menu__board--compact .wea-mega-menu__card-icon {
+	inline-size: calc(var(--wea-mm-tile-size, 40px) * .75);
+	block-size: calc(var(--wea-mm-tile-size, 40px) * .75);
+	font-size: calc(var(--wea-mm-tile-icon, 18px) * .85);
+}
+
+.wea-mega-menu__board--compact .wea-mega-menu__card-body {
+	gap: 1px;
+}
+
+.wea-mega-menu__board--compact .wea-mega-menu__card-desc {
+	font-size: 12px;
+}
+
+/* Promo */
+.wea-mega-menu__promo {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	box-sizing: border-box;
+	padding: var(--wea-mm-promo-pad, 18px);
+	border-radius: var(--wea-mm-promo-radius, 12px);
+	background: var(--wea-mm-promo-bg, rgba(15, 23, 42, .045));
+	color: var(--wea-mm-promo-c, #4b5563);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.wea-mega-menu__promo-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	margin-block-end: 4px;
+	object-fit: cover;
+	border-radius: calc(var(--wea-mm-promo-radius, 12px) - 4px);
+}
+
+.wea-mega-menu__promo-title {
+	color: var(--wea-mm-promo-title-c, #111827);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.elementor .wea-mega-menu__promo-button,
+.elementor .wea-mega-menu__promo-button:hover,
+.elementor .wea-mega-menu__promo-button:focus,
+.elementor .wea-mega-menu__promo-button:visited {
+	color: var(--wea-mm-promo-btn-c, #fff);
+	text-decoration: none;
+}
+
+.wea-mega-menu__promo-button {
+	display: inline-flex;
+	align-items: center;
+	margin-block-start: 4px;
+	padding: 8px 16px;
+	border-radius: var(--wea-mm-promo-btn-radius, 8px);
+	background: var(--wea-mm-promo-btn-bg, var(--e-global-color-accent, #5b4cf5));
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.3;
+	transition: filter .18s ease, transform .18s ease;
+}
+
+.wea-mega-menu__promo-button:hover {
+	filter: brightness(1.08);
+}
+
+.wea-mega-menu__promo-button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* Footer bar */
+.wea-mega-menu__board-foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px 16px;
+	padding-block-start: 14px;
+	border-block-start: 1px solid var(--wea-mm-foot-bc, rgba(15, 23, 42, .08));
+	color: var(--wea-mm-foot-note-c, #6b7280);
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.wea-mega-menu__board-note strong,
+.wea-mega-menu__board-note b {
+	color: var(--wea-mm-card-title-c, #111827);
+}
+
+.wea-mega-menu__board-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-inline-start: auto;
+}
+
+.elementor .wea-mega-menu__board-link,
+.elementor .wea-mega-menu__board-link:hover,
+.elementor .wea-mega-menu__board-link:focus,
+.elementor .wea-mega-menu__board-link:visited {
+	color: var(--wea-mm-foot-c, var(--e-global-color-accent, #5b4cf5));
+	text-decoration: none;
+}
+
+.wea-mega-menu__board-link {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--wea-mm-foot-pad, 0);
+	border-radius: 8px;
+	background: var(--wea-mm-foot-bg, transparent);
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.4;
+	transition: filter .18s ease, text-decoration-color .18s ease;
+}
+
+.elementor .wea-mega-menu__board-link:hover {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.wea-mega-menu__board-link:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -776,6 +1177,490 @@
 .wea-mega-menu.is-mobile:not(.wea-mega-menu--anim-none) .wea-mega-menu__item.is-open > .wea-mega-menu__sub,
 .wea-mega-menu.is-mobile:not(.wea-mega-menu--anim-none) .wea-mega-menu__item.is-open > .wea-mega-menu__mega {
 	animation: wea-mm-fade-in .25s ease both;
+}
+
+/* Built-in panels inside the accordion: one readable list, promo and footer last. */
+.wea-mega-menu.is-mobile .wea-mega-menu__board {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	max-inline-size: none;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__board-main {
+	display: block;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__group + .wea-mega-menu__group {
+	margin-block-start: 14px;
+	padding: 0;
+	border: 0;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__group-label {
+	padding-inline: 0;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__cards {
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2px;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__card,
+.wea-mega-menu.is-mobile .wea-mega-menu__board--top .wea-mega-menu__card {
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 8px 0;
+	border-color: transparent;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__card-icon {
+	inline-size: min(var(--wea-mm-tile-size, 40px), 36px);
+	block-size: min(var(--wea-mm-tile-size, 40px), 36px);
+	font-size: min(var(--wea-mm-tile-icon, 18px), 16px);
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__card-title {
+	font-size: 15px;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__promo {
+	order: 10;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__promo-image {
+	max-block-size: 160px;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__board-foot {
+	order: 11;
+	justify-content: flex-start;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__board-links {
+	margin-inline-start: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Design presets                                                      */
+/* Selectors start with .elementor-widget-wea-mega-menu so they sit    */
+/* above Elementor's global defaults for this widget (0,2,0 for the    */
+/* variables, 0,3,0 for typography) and below every per-widget control */
+/* (0,4,0 and up). The variable blocks therefore use 0,3,0.            */
+/* ------------------------------------------------------------------ */
+
+/* Wisemattic: soft slate menu, rounded white panel, gradient icon tiles, pill tags. */
+.elementor-widget-wea-mega-menu .wea-mega-menu.wea-mega-menu--preset-wisemattic {
+	--wea-mm-c: #475569;
+	--wea-mm-c-h: #1d72fe;
+	--wea-mm-c-a: #1d72fe;
+	--wea-mm-ptr-h: transparent;
+	--wea-mm-ptr-a: transparent;
+	--wea-mm-ps: 12px;
+	--wea-mm-pe: 12px;
+	--wea-mm-gap: 8px;
+	--wea-mm-dd-c: #334155;
+	--wea-mm-dd-c-h: #ff5b24;
+	--wea-mm-dd-c-a: #ff5b24;
+	--wea-mm-dd-ibg-h: #f8fafc;
+	--wea-mm-dd-pad: 8px;
+	--wea-mm-dd-pt: 9px;
+	--wea-mm-dd-pb: 9px;
+	--wea-mm-dd-ps: 14px;
+	--wea-mm-dd-pe: 14px;
+	--wea-mm-dd-radius: 14px;
+	--wea-mm-dd-border: 1px solid #edf0f5;
+	--wea-mm-dd-shadow: 0 20px 45px -10px rgba(15, 23, 42, .16), 0 0 1px rgba(15, 23, 42, .08);
+	--wea-mm-dd-offset: 10px;
+	--wea-mm-mega-pad: 22px 24px 20px;
+	--wea-mm-mega-radius: 18px;
+	--wea-mm-mega-border: 1px solid #edf0f5;
+	--wea-mm-mega-shadow: 0 20px 45px -10px rgba(15, 23, 42, .16), 0 0 1px rgba(15, 23, 42, .08);
+	--wea-mm-mega-offset: 10px;
+	--wea-mm-board-label-c: #ff5b24;
+	--wea-mm-board-gap: 14px;
+	--wea-mm-group-c: #94a3b8;
+	--wea-mm-group-gap: 20px;
+	--wea-mm-card-pad: 10px 12px;
+	--wea-mm-card-radius: 12px;
+	--wea-mm-card-gap: 12px 14px;
+	--wea-mm-card-bg-h: #f8fafc;
+	--wea-mm-card-bc-h: #f1f5f9;
+	--wea-mm-card-title-c: #0f172a;
+	--wea-mm-card-title-c-h: #ff5b24;
+	--wea-mm-card-desc-c: #64748b;
+	--wea-mm-tile-size: 42px;
+	--wea-mm-tile-radius: 11px;
+	--wea-mm-tile-icon: 19px;
+	--wea-mm-tile-default: #ff5b24;
+	--wea-mm-tag-default: #2563eb;
+	--wea-mm-tag-radius: 4px;
+	--wea-mm-promo-bg: #f8fafc;
+	--wea-mm-promo-btn-bg: #ff5b24;
+	--wea-mm-foot-c: #fff;
+	--wea-mm-foot-bg: #1d72fe;
+	--wea-mm-foot-bc: #f1f5f9;
+	--wea-mm-foot-note-c: #64748b;
+	--wea-mm-foot-pad: 8px 18px;
+	--wea-mm-m-c: #334155;
+	--wea-mm-m-c-a: #1d72fe;
+	--wea-mm-m-div: #f1f5f9;
+	--wea-mm-tg-c: #0f172a;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__item--top > .wea-mega-menu__row {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__sub .wea-mega-menu__row {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__sub .wea-mega-menu__row {
+	border-radius: 9px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__badge {
+	background-color: #ff5b24;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__board-label {
+	padding-inline: 4px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic:not(.is-mobile) .wea-mega-menu__board-main--split > .wea-mega-menu__group + .wea-mega-menu__group {
+	padding-inline-start: 20px;
+	border-inline-start: 1px solid #eef0f4;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__card-icon:not(.wea-mega-menu__card-icon--image) {
+	background: linear-gradient(135deg, var(--wea-mm-tile-cur) 0%, var(--wea-mm-tile-2, var(--wea-mm-tile-cur)) 100%);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+	color: #fff;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic a.wea-mega-menu__card:hover .wea-mega-menu__card-icon {
+	transform: translateY(-1px) scale(1.04);
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__card-title {
+	font-size: 14.5px;
+	font-weight: 700;
+	letter-spacing: -.01em;
+	line-height: 1.25;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__card-desc {
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__card-tag {
+	padding: 1px 6px;
+	font-size: 9.5px;
+	letter-spacing: .04em;
+	line-height: 1.4;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__board-foot {
+	font-size: 12.5px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__board-link {
+	box-shadow: 0 4px 14px rgba(29, 114, 254, .28);
+	font-size: 13px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__board-link--alt {
+	background: #ff5b24;
+	box-shadow: 0 4px 14px rgba(255, 91, 36, .28);
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic .wea-mega-menu__board-link:hover {
+	filter: brightness(.94);
+	text-decoration: none;
+}
+
+/* Studio: crisp white, bold dark type, hairline borders, underline hovers. */
+.elementor-widget-wea-mega-menu .wea-mega-menu.wea-mega-menu--preset-studio {
+	--wea-mm-c: #191919;
+	--wea-mm-c-h: #191919;
+	--wea-mm-c-a: #191919;
+	--wea-mm-ptr-h: #191919;
+	--wea-mm-ptr-a: #191919;
+	--wea-mm-ptr-w: 2px;
+	--wea-mm-ps: 12px;
+	--wea-mm-pe: 12px;
+	--wea-mm-gap: 6px;
+	--wea-mm-dd-c: #191919;
+	--wea-mm-dd-c-h: #191919;
+	--wea-mm-dd-c-a: #0057ff;
+	--wea-mm-dd-ibg-h: #f3f3f3;
+	--wea-mm-dd-pad: 8px 0;
+	--wea-mm-dd-pt: 8px;
+	--wea-mm-dd-pb: 8px;
+	--wea-mm-dd-ps: 24px;
+	--wea-mm-dd-pe: 24px;
+	--wea-mm-dd-radius: 4px;
+	--wea-mm-dd-border: 1px solid #e3e3e3;
+	--wea-mm-dd-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+	--wea-mm-mega-pad: 32px 28px 28px;
+	--wea-mm-mega-radius: 0;
+	--wea-mm-mega-border: 1px solid #e3e3e3;
+	--wea-mm-mega-shadow: 0 22px 32px -22px rgba(0, 0, 0, .22);
+	--wea-mm-board-label-c: #191919;
+	--wea-mm-board-gap: 22px;
+	--wea-mm-board-col-gap: 40px;
+	--wea-mm-group-c: #6e6e6e;
+	--wea-mm-group-gap: 40px;
+	--wea-mm-group-indent: 0px;
+	--wea-mm-card-pad: 7px 0;
+	--wea-mm-card-radius: 0;
+	--wea-mm-card-gap: 4px 28px;
+	--wea-mm-card-bg-h: transparent;
+	--wea-mm-card-title-c: #191919;
+	--wea-mm-card-title-c-h: #191919;
+	--wea-mm-card-desc-c: #6e6e6e;
+	--wea-mm-tile-size: 36px;
+	--wea-mm-tile-radius: 8px;
+	--wea-mm-tile-icon: 16px;
+	--wea-mm-tile-default: #191919;
+	--wea-mm-tag-default: #0057ff;
+	--wea-mm-promo-bg: #f3f3f3;
+	--wea-mm-promo-radius: 8px;
+	--wea-mm-promo-pad: 22px;
+	--wea-mm-promo-btn-bg: #0057ff;
+	--wea-mm-promo-btn-radius: 999px;
+	--wea-mm-promo-w: 300px;
+	--wea-mm-foot-c: #191919;
+	--wea-mm-foot-bc: #e3e3e3;
+	--wea-mm-m-c: #191919;
+	--wea-mm-m-c-a: #0057ff;
+	--wea-mm-m-div: #ececec;
+	--wea-mm-tg-c: #191919;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__item--top > .wea-mega-menu__row {
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: -.01em;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__sub .wea-mega-menu__row {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__badge {
+	background-color: #0057ff;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__board-label {
+	color: var(--wea-mm-board-label-c);
+	font-size: 22px;
+	font-weight: 800;
+	letter-spacing: -.02em;
+	text-transform: none;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__group-label {
+	margin-block-end: 10px;
+	font-size: 12px;
+	letter-spacing: .06em;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio:not(.is-mobile) .wea-mega-menu__board-main--split > .wea-mega-menu__group + .wea-mega-menu__group {
+	padding-inline-start: 40px;
+	border-inline-start: 1px solid #e3e3e3;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__card-icon:not(.wea-mega-menu__card-icon--image) {
+	background: #f3f3f3;
+	color: var(--wea-mm-tile, #191919);
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__card-title {
+	font-size: 15px;
+	font-weight: 700;
+	text-decoration-line: underline;
+	text-decoration-color: transparent;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 4px;
+	transition: text-decoration-color .18s ease;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio a.wea-mega-menu__card:hover .wea-mega-menu__card-title,
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio a.wea-mega-menu__card:focus-visible .wea-mega-menu__card-title {
+	text-decoration-color: currentColor;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__card-desc {
+	font-size: 13px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__card-tag {
+	padding: 0 7px;
+	border: 1px solid currentColor;
+	background: none;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__promo-title {
+	font-size: 19px;
+	font-weight: 800;
+	letter-spacing: -.01em;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__promo-button {
+	padding: 9px 20px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio .wea-mega-menu__board-link {
+	text-decoration-line: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 4px;
+}
+
+/* Product Hub: dark slate menu, full-width soft panel, logo tiles, lifted hover cards, side promo. */
+.elementor-widget-wea-mega-menu .wea-mega-menu.wea-mega-menu--preset-hub {
+	--wea-mm-c: #1f2937;
+	--wea-mm-c-h: #1a6dff;
+	--wea-mm-c-a: #1a6dff;
+	--wea-mm-ptr-h: transparent;
+	--wea-mm-ptr-a: transparent;
+	--wea-mm-ps: 14px;
+	--wea-mm-pe: 14px;
+	--wea-mm-gap: 6px;
+	--wea-mm-dd-c: #1f2937;
+	--wea-mm-dd-c-h: #1a6dff;
+	--wea-mm-dd-c-a: #1a6dff;
+	--wea-mm-dd-ibg-h: #f2f6ff;
+	--wea-mm-dd-pad: 10px;
+	--wea-mm-dd-ps: 14px;
+	--wea-mm-dd-pe: 14px;
+	--wea-mm-dd-radius: 14px;
+	--wea-mm-dd-border: 1px solid #e8edf7;
+	--wea-mm-dd-shadow: 0 24px 48px -20px rgba(15, 23, 42, .25);
+	--wea-mm-dd-offset: 8px;
+	--wea-mm-mega-pad: 32px 28px 30px;
+	--wea-mm-mega-radius: 0 0 22px 22px;
+	--wea-mm-mega-border: 1px solid #e8edf7;
+	--wea-mm-mega-bg: linear-gradient(180deg, #f3f6ff 0%, #ffffff 72%);
+	--wea-mm-mega-shadow: 0 40px 60px -40px rgba(15, 23, 42, .35);
+	--wea-mm-board-label-c: #1a6dff;
+	--wea-mm-board-gap: 20px;
+	--wea-mm-board-col-gap: 28px;
+	--wea-mm-group-c: #6b7280;
+	--wea-mm-group-indent: 14px;
+	--wea-mm-card-pad: 14px;
+	--wea-mm-card-radius: 16px;
+	--wea-mm-card-gap: 6px 12px;
+	--wea-mm-card-inner-gap: 14px;
+	--wea-mm-card-bg-h: #fff;
+	--wea-mm-card-bc-h: #e8edf7;
+	--wea-mm-card-shadow-h: 0 12px 30px -14px rgba(15, 23, 42, .22);
+	--wea-mm-card-title-c: #111827;
+	--wea-mm-card-title-c-h: #1a6dff;
+	--wea-mm-card-desc-c: #4b5563;
+	--wea-mm-tile-size: 50px;
+	--wea-mm-tile-radius: 50%;
+	--wea-mm-tile-icon: 20px;
+	--wea-mm-tile-default: #1a6dff;
+	--wea-mm-tag-default: #1a6dff;
+	--wea-mm-promo-bg: linear-gradient(160deg, #e8f0ff 0%, #f3edff 100%);
+	--wea-mm-promo-radius: 18px;
+	--wea-mm-promo-pad: 20px;
+	--wea-mm-promo-btn-bg: #1a6dff;
+	--wea-mm-promo-w: 290px;
+	--wea-mm-foot-c: #111827;
+	--wea-mm-foot-bc: transparent;
+	--wea-mm-m-c: #1f2937;
+	--wea-mm-m-c-a: #1a6dff;
+	--wea-mm-m-div: #edf0f6;
+	--wea-mm-tg-c: #1f2937;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__item--top > .wea-mega-menu__row {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__sub .wea-mega-menu__row {
+	font-size: 15px;
+	font-weight: 500;
+	border-radius: 10px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__badge {
+	background-color: #1a6dff;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__indicator path {
+	stroke-width: 3px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__card-icon:not(.wea-mega-menu__card-icon--image) {
+	background: color-mix(in srgb, var(--wea-mm-tile-cur) 12%, #fff);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wea-mm-tile-cur) 16%, #fff), 0 6px 14px -8px color-mix(in srgb, var(--wea-mm-tile-cur) 60%, transparent);
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__card-icon--image {
+	background: #fff;
+	box-shadow: 0 4px 14px rgba(15, 23, 42, .1);
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__card-title {
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: -.01em;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__card-desc {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__promo-title {
+	font-size: 17px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__board-foot {
+	justify-content: flex-end;
+	padding-block-start: 4px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub .wea-mega-menu__board-link {
+	font-size: 15px;
+	text-decoration-line: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 5px;
+}
+
+/* Full-width panels run edge to edge: no side borders or rounded corners. */
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub:not(.is-mobile) .wea-mega-menu__mega--full,
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio:not(.is-mobile) .wea-mega-menu__mega--full {
+	border-inline-width: 0;
+	border-radius: 0;
+}
+
+/* Presets inside the mobile menu */
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio.is-mobile .wea-mega-menu__row,
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-hub.is-mobile .wea-mega-menu__row,
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic.is-mobile .wea-mega-menu__row {
+	font-size: 16px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-wisemattic.is-mobile .wea-mega-menu__board-link {
+	padding: 7px 14px;
+}
+
+.elementor-widget-wea-mega-menu .wea-mega-menu--preset-studio.is-mobile .wea-mega-menu__board-label {
+	font-size: 18px;
 }
 
 /* Page scroll lock while the off-canvas menu is open. */

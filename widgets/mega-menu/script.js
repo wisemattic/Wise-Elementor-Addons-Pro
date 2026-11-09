@@ -220,6 +220,8 @@
 			if ( mode === 'full' ) {
 				x = -base.left;
 				w = vw;
+				// Built-in cards stay as wide as the page container.
+				mega.style.setProperty( '--wea-mm-inner-w', containerEl().getBoundingClientRect().width + 'px' );
 			} else if ( mode === 'container' ) {
 				rect = containerEl().getBoundingClientRect();
 				x = rect.left - base.left;
