@@ -37,7 +37,7 @@ final class Pro_Map {
 		return [
 			'mega-menu'         => [
 				'title'    => __( 'Mega Menu', 'wise-addons-for-elementor-pro' ),
-				'desc'     => __( 'Navigation menu with mega dropdowns built from Elementor templates, and a mobile off-canvas menu.', 'wise-addons-for-elementor-pro' ),
+				'desc'     => __( 'Navigation menu with mega dropdowns: card panels with ready design presets or any Elementor template, plus a mobile off-canvas menu.', 'wise-addons-for-elementor-pro' ),
 				'icon'     => 'eicon-nav-menu',
 				'cat'      => 'theme',
 				'class'    => '\\WiseAddonsPro\\Widgets\\Mega_Menu',
