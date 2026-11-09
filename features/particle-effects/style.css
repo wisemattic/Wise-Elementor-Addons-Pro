@@ -1,0 +1,54 @@
+/*
+ * Wise Particle Effects.
+ *
+ * Controls write custom properties on the element; script.js reads them and
+ * draws on a canvas that sits behind the content. The resets below stop a
+ * nested element with particles from inheriting its parent's settings.
+ */
+
+.wea-pe-yes {
+	--wea-pe-preset: initial;
+	--wea-pe-count: initial;
+	--wea-pe-c1: initial;
+	--wea-pe-c2: initial;
+	--wea-pe-c3: initial;
+	--wea-pe-shape: initial;
+	--wea-pe-img: initial;
+	--wea-pe-size-min: initial;
+	--wea-pe-size-max: initial;
+	--wea-pe-opacity: initial;
+	--wea-pe-speed: initial;
+	--wea-pe-dir: initial;
+	--wea-pe-link-dist: initial;
+	--wea-pe-link-color: initial;
+	--wea-pe-link-opacity: initial;
+	--wea-pe-link-width: initial;
+	--wea-pe-hover: initial;
+	--wea-pe-radius: initial;
+	--wea-pe-click: initial;
+	--wea-pe-z: initial;
+	--wea-pe-mobile: initial;
+}
+
+/* Containers and sections are positioned already; this only covers custom CSS that unsets it. */
+:where(.wea-pe-yes) {
+	position: relative;
+}
+
+.wea-pe-canvas {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	z-index: var(--wea-pe-z, 0);
+}
+
+.wea-pe-canvas[hidden] {
+	display: none;
+}

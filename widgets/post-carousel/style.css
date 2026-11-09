@@ -1,0 +1,529 @@
+/* Wise Post Carousel (Pro). Swiper core styles come from Elementor's bundled "swiper" handle. */
+
+.wea-post-carousel {
+	--wea-pc-arrow: 42px;
+	--wea-pc-arrow-offset: 12px;
+	--wea-pc-dot: 8px;
+	--wea-pc-pag-space: 22px;
+	--wea-pc-pag-color: rgba(17, 24, 39, .22);
+	--wea-pc-pag-active: var(--e-global-color-accent, #5b4cf5);
+	--wea-pc-progress-h: 4px;
+	--wea-pc-ratio: 16 / 10;
+	--wea-pc-side-w: 40%;
+	--wea-pc-overlay-h: 380px;
+	--wea-pc-shade: rgba(10, 12, 20, .82);
+	--wea-pc-badge-offset: 14px;
+	--wea-pc-lift: 0px;
+	--wea-pc-justify: start;
+	--wea-pc-pre-view: var(--wea-pc-pre-view-desktop, 3);
+	position: relative;
+}
+
+.wea-post-carousel__stage {
+	position: relative;
+}
+
+.wea-post-carousel--arrows-outside .wea-post-carousel__stage {
+	padding-inline: calc(var(--wea-pc-arrow) + 14px);
+}
+
+/* Room for card shadows and the hover lift inside Swiper's overflow box. */
+.wea-post-carousel__swiper {
+	padding-block: 6px 10px;
+}
+
+.wea-post-carousel--equal-yes .wea-post-carousel__slide {
+	height: auto;
+	display: flex;
+}
+
+/* Card */
+.wea-post-carousel__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	inline-size: 100%;
+	overflow: hidden;
+	border-radius: 14px;
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 6px 18px rgba(16, 24, 40, .07);
+	transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+.wea-post-carousel__card:hover,
+.wea-post-carousel__card:focus-within {
+	transform: translateY(var(--wea-pc-lift));
+}
+
+.wea-post-carousel__media {
+	position: relative;
+	flex: none;
+	overflow: hidden;
+	aspect-ratio: var(--wea-pc-ratio);
+	background-color: rgba(17, 24, 39, .06);
+}
+
+.wea-post-carousel__thumb {
+	display: block;
+	block-size: 100%;
+}
+
+/* ".elementor img" (0,1,1) sets height: auto, so the image rule needs a little more weight. */
+.elementor .wea-post-carousel__image {
+	display: block;
+	inline-size: 100%;
+	block-size: 100%;
+	max-inline-size: none;
+	object-fit: cover;
+	transition: transform .6s ease, filter .3s ease;
+}
+
+.elementor .wea-post-carousel--zoom-yes .wea-post-carousel__card:hover .wea-post-carousel__image {
+	transform: scale(1.06);
+}
+
+.wea-post-carousel__body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	align-items: stretch;
+	min-inline-size: 0;
+	padding: 20px 22px 22px;
+}
+
+.wea-post-carousel__body > :last-child {
+	margin-block-end: 0;
+}
+
+/* Badge */
+.wea-post-carousel__badge {
+	display: inline-block;
+	align-self: var(--wea-pc-justify);
+	margin-block-end: 12px;
+	padding: 5px 11px;
+	border-radius: 999px;
+	background-color: var(--e-global-color-accent, #5b4cf5);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: .02em;
+	line-height: 1.3;
+	transition: background-color .2s ease, color .2s ease;
+}
+
+.wea-post-carousel__media .wea-post-carousel__badge {
+	position: absolute;
+	z-index: 2;
+	inset-block-start: var(--wea-pc-badge-offset);
+	inset-inline-start: var(--wea-pc-badge-offset);
+	margin: 0;
+}
+
+.elementor .wea-post-carousel__badge a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Title */
+.elementor .wea-post-carousel__title {
+	margin: 0 0 10px;
+	font-size: 1.2em;
+	line-height: 1.35;
+	color: var(--e-global-color-primary, #111827);
+}
+
+.elementor .wea-post-carousel__title a {
+	color: inherit;
+	text-decoration: none;
+	transition: color .2s ease;
+}
+
+.elementor .wea-post-carousel__title a:hover {
+	color: var(--e-global-color-accent, #5b4cf5);
+}
+
+/* Meta */
+.wea-post-carousel__meta {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: var(--wea-pc-justify);
+	align-items: center;
+	gap: 6px 14px;
+	margin: 0 0 12px;
+	padding: 0;
+	list-style: none;
+	font-size: .85em;
+	color: #6b7280;
+}
+
+.wea-post-carousel__meta-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.elementor .wea-post-carousel__meta a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.wea-post-carousel__meta-icon {
+	flex: none;
+	opacity: .8;
+}
+
+/* Excerpt */
+.wea-post-carousel__excerpt {
+	margin: 0 0 14px;
+	line-height: 1.6;
+	color: #4b5563;
+}
+
+/* Read more */
+.wea-post-carousel__footer {
+	margin-block-start: auto;
+	padding-block-start: 4px;
+}
+
+.wea-post-carousel__read-more {
+	display: inline-flex;
+	align-items: center;
+	gap: .45em;
+	font-weight: 600;
+	text-decoration: none;
+	transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.elementor .wea-post-carousel__read-more:not(.wea-button) {
+	color: var(--e-global-color-accent, #5b4cf5);
+}
+
+.wea-post-carousel__read-more--button {
+	padding: 10px 18px;
+}
+
+.wea-post-carousel__read-more-icon {
+	font-size: .85em;
+	transition: transform .2s ease;
+}
+
+.wea-post-carousel__read-more:hover .wea-post-carousel__read-more-icon {
+	transform: translateX(3px);
+}
+
+[dir="rtl"] .wea-post-carousel__read-more-icon {
+	transform: scaleX(-1);
+}
+
+[dir="rtl"] .wea-post-carousel__read-more:hover .wea-post-carousel__read-more-icon {
+	transform: scaleX(-1) translateX(3px);
+}
+
+.wea-post-carousel a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* Layout: side */
+.wea-post-carousel--side .wea-post-carousel__card {
+	flex-direction: row;
+}
+
+.wea-post-carousel--side .wea-post-carousel__media {
+	inline-size: var(--wea-pc-side-w);
+	aspect-ratio: auto;
+	min-block-size: 100%;
+}
+
+.wea-post-carousel--side .wea-post-carousel__thumb {
+	position: absolute;
+	inset: 0;
+}
+
+.wea-post-carousel--side .wea-post-carousel__card:not(.has-image) .wea-post-carousel__body {
+	inline-size: 100%;
+}
+
+/* Side cards in a narrow slide stack the image on top. */
+.wea-post-carousel--side .wea-post-carousel__slide {
+	container: wea-pc-slide / inline-size;
+}
+
+@container wea-pc-slide (max-width: 380px) {
+	.wea-post-carousel--side .wea-post-carousel__card {
+		flex-direction: column;
+	}
+
+	.wea-post-carousel--side .wea-post-carousel__media {
+		inline-size: auto;
+		min-block-size: 0;
+		aspect-ratio: var(--wea-pc-ratio);
+	}
+}
+
+/* Layout: minimal */
+.wea-post-carousel--minimal .wea-post-carousel__card {
+	border: 1px solid rgba(17, 24, 39, .1);
+	box-shadow: none;
+}
+
+.wea-post-carousel--minimal .wea-post-carousel__body {
+	padding: 24px;
+}
+
+/* Layout: overlay */
+.wea-post-carousel--overlay .wea-post-carousel__card {
+	justify-content: flex-end;
+	min-block-size: var(--wea-pc-overlay-h);
+	background-color: #111827;
+	color: #fff;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__media {
+	position: absolute;
+	inset: 0;
+	aspect-ratio: auto;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, var(--wea-pc-shade) 0%, var(--wea-pc-shade) 28%, transparent 88%);
+	pointer-events: none;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__body {
+	position: relative;
+	z-index: 1;
+	flex: 0 0 auto;
+	pointer-events: none;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__body a {
+	pointer-events: auto;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__footer {
+	margin-block-start: 0;
+}
+
+.elementor .wea-post-carousel--overlay .wea-post-carousel__title,
+.elementor .wea-post-carousel--overlay .wea-post-carousel__title a:hover,
+.elementor .wea-post-carousel--overlay .wea-post-carousel__read-more:not(.wea-button) {
+	color: #fff;
+}
+
+.wea-post-carousel--overlay .wea-post-carousel__meta,
+.wea-post-carousel--overlay .wea-post-carousel__excerpt {
+	color: rgba(255, 255, 255, .85);
+}
+
+/* Arrows */
+.wea-post-carousel__arrow {
+	position: absolute;
+	z-index: 3;
+	top: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--wea-pc-arrow);
+	height: var(--wea-pc-arrow);
+	margin: calc(var(--wea-pc-arrow) / -2) 0 0;
+	padding: 0;
+	border: 0 solid transparent;
+	border-radius: 50%;
+	background-color: #fff;
+	color: #111827;
+	font-size: 18px;
+	line-height: 1;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+	cursor: pointer;
+	transition: background-color .2s ease, color .2s ease, opacity .2s ease;
+}
+
+.wea-post-carousel__arrow:hover,
+.wea-post-carousel__arrow:focus-visible {
+	background-color: var(--e-global-color-accent, #5b4cf5);
+	color: #fff;
+}
+
+.wea-post-carousel__arrow:focus-visible {
+	outline: 2px solid var(--e-global-color-accent, #5b4cf5);
+	outline-offset: 2px;
+}
+
+.wea-post-carousel__arrow svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.wea-post-carousel__arrow--prev {
+	inset-inline-start: var(--wea-pc-arrow-offset);
+}
+
+.wea-post-carousel__arrow--next {
+	inset-inline-end: var(--wea-pc-arrow-offset);
+}
+
+.wea-post-carousel--arrows-outside .wea-post-carousel__arrow--prev {
+	inset-inline-start: 0;
+}
+
+.wea-post-carousel--arrows-outside .wea-post-carousel__arrow--next {
+	inset-inline-end: 0;
+}
+
+.wea-post-carousel__arrow.swiper-button-disabled {
+	opacity: .35;
+	cursor: default;
+}
+
+.wea-post-carousel__arrow.swiper-button-lock {
+	display: none;
+}
+
+[dir="rtl"] .wea-post-carousel__arrow svg,
+[dir="rtl"] .wea-post-carousel__arrow i {
+	transform: scaleX(-1);
+}
+
+/* Pagination (outside Swiper's box, so reset Swiper's absolute positioning). */
+.wea-post-carousel .wea-post-carousel__pagination {
+	position: static;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-block-start: var(--wea-pc-pag-space);
+	transform: none;
+	color: var(--wea-pc-pag-color);
+	font-size: 14px;
+	font-variant-numeric: tabular-nums;
+}
+
+.wea-post-carousel--arrows-outside .wea-post-carousel__pagination {
+	margin-inline: calc(var(--wea-pc-arrow) + 14px);
+}
+
+.wea-post-carousel__pagination--fraction {
+	color: #4b5563;
+}
+
+.wea-post-carousel__pagination--fraction .swiper-pagination-current {
+	color: var(--wea-pc-pag-active);
+	font-weight: 700;
+}
+
+.wea-post-carousel__pagination .swiper-pagination-bullet {
+	display: inline-block;
+	width: var(--wea-pc-dot);
+	height: var(--wea-pc-dot);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background-color: var(--wea-pc-pag-color);
+	opacity: 1;
+	cursor: pointer;
+	transition: width .25s ease, background-color .25s ease;
+}
+
+.wea-post-carousel__pagination .swiper-pagination-bullet-active {
+	width: calc(var(--wea-pc-dot) * 3);
+	background-color: var(--wea-pc-pag-active);
+}
+
+.wea-post-carousel__pagination .swiper-pagination-bullet:focus-visible {
+	outline: 2px solid var(--wea-pc-pag-active);
+	outline-offset: 2px;
+}
+
+.wea-post-carousel .wea-post-carousel__pagination.swiper-pagination-progressbar {
+	position: relative;
+	inset: auto;
+	display: block;
+	width: auto;
+	height: var(--wea-pc-progress-h);
+	overflow: hidden;
+	border-radius: 999px;
+	background-color: var(--wea-pc-pag-color);
+}
+
+.wea-post-carousel__pagination .swiper-pagination-progressbar-fill {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	width: 100%;
+	height: 100%;
+	transform: scale(0);
+	transform-origin: left top;
+	background-color: var(--wea-pc-pag-active);
+}
+
+[dir="rtl"] .wea-post-carousel__pagination .swiper-pagination-progressbar-fill {
+	transform-origin: right top;
+}
+
+.wea-post-carousel__pagination.swiper-pagination-lock {
+	display: none;
+}
+
+.wea-post-carousel__empty {
+	margin: 0;
+}
+
+/* Before Swiper starts: lay the first slides out in a row so the page does not jump. */
+.wea-post-carousel__swiper:not(.swiper-initialized) .swiper-wrapper {
+	gap: var(--wea-pc-pre-gap, 24px);
+}
+
+.wea-post-carousel__swiper:not(.swiper-initialized) .wea-post-carousel__slide {
+	width: calc((100% - (var(--wea-pc-pre-view, 3) - 1) * var(--wea-pc-pre-gap, 24px)) / var(--wea-pc-pre-view, 3));
+}
+
+@media (max-width: 1024px) {
+	.wea-post-carousel {
+		--wea-pc-pre-view: var(--wea-pc-pre-view-tablet, 2);
+	}
+}
+
+@media (max-width: 767px) {
+	.wea-post-carousel {
+		--wea-pc-pre-view: var(--wea-pc-pre-view-mobile, 1);
+	}
+}
+
+@media (max-width: 767px) {
+	.wea-post-carousel {
+		--wea-pc-arrow: 36px;
+		--wea-pc-arrow-offset: 6px;
+	}
+
+	.wea-post-carousel--arrows-outside .wea-post-carousel__stage {
+		padding-inline: calc(var(--wea-pc-arrow) + 8px);
+	}
+
+	.wea-post-carousel--arrows-outside .wea-post-carousel__pagination {
+		margin-inline: calc(var(--wea-pc-arrow) + 8px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wea-post-carousel__card,
+	.wea-post-carousel__image,
+	.wea-post-carousel__arrow,
+	.wea-post-carousel__read-more-icon,
+	.wea-post-carousel__pagination .swiper-pagination-bullet {
+		transition: none;
+	}
+
+	.wea-post-carousel__card:hover,
+	.wea-post-carousel__card:focus-within,
+	.elementor .wea-post-carousel--zoom-yes .wea-post-carousel__card:hover .wea-post-carousel__image {
+		transform: none;
+	}
+}

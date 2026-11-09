@@ -1,0 +1,277 @@
+/* Wise Table of Contents. Defaults use :where() or custom properties, so style controls always win. */
+
+.wea-table-of-contents {
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+:where(.wea-table-of-contents) {
+	border: 1px solid rgba(15, 23, 42, 0.1);
+	border-radius: 12px;
+	background-color: #fff;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.wea-table-of-contents__header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	border-block-end: var(--wea-toc-sep-width, 1px) solid var(--wea-toc-sep-color, rgba(15, 23, 42, 0.1));
+}
+
+:where(.wea-table-of-contents__header) {
+	padding: 14px 18px;
+}
+
+.wea-table-of-contents.is-collapsed .wea-table-of-contents__header {
+	border-block-end-color: transparent;
+}
+
+.wea-table-of-contents--collapsible .wea-table-of-contents__header {
+	cursor: pointer;
+}
+
+.wea-table-of-contents__title {
+	flex: 1;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+}
+
+:where(.wea-table-of-contents__title) {
+	font-size: 1.05rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.elementor .wea-table-of-contents__toggle {
+	--wea-toc-toggle-size: 32px;
+	--wea-toc-toggle-icon: 14px;
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	inline-size: var(--wea-toc-toggle-size);
+	block-size: var(--wea-toc-toggle-size);
+	margin: 0;
+	margin-inline-start: auto;
+	padding: 0;
+	border: 0;
+	border-radius: 8px;
+	box-shadow: none;
+	background-color: rgba(15, 23, 42, 0.05);
+	color: inherit;
+	font-size: var(--wea-toc-toggle-icon);
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.elementor .wea-table-of-contents__toggle:hover,
+.elementor .wea-table-of-contents__toggle:focus {
+	background-color: rgba(15, 23, 42, 0.1);
+	color: inherit;
+}
+
+.wea-table-of-contents__toggle:focus-visible {
+	outline: 2px solid var(--e-global-color-accent, #5b4cf5);
+	outline-offset: 2px;
+}
+
+.wea-table-of-contents__toggle-icon {
+	transition: transform 0.25s ease;
+}
+
+.wea-table-of-contents__toggle[aria-expanded="true"] .wea-table-of-contents__toggle-icon {
+	transform: rotate(180deg);
+}
+
+/* Body and list --------------------------------------------------------------- */
+
+:where(.wea-table-of-contents__body) {
+	padding: 12px 12px 14px;
+}
+
+.wea-table-of-contents__body[hidden] {
+	display: none;
+}
+
+.wea-table-of-contents__list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wea-toc-gap, 2px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-table-of-contents__list .wea-table-of-contents__list {
+	margin-block-start: var(--wea-toc-gap, 2px);
+	padding-inline-start: var(--wea-toc-indent, 1.1em);
+}
+
+.wea-table-of-contents__item {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-table-of-contents__item::before,
+.wea-table-of-contents__item::after {
+	content: none;
+}
+
+.elementor .wea-table-of-contents__link {
+	display: flex;
+	align-items: baseline;
+	gap: var(--wea-toc-marker-gap, 0.55em);
+	box-sizing: border-box;
+	min-width: 0;
+	padding: 5px 8px;
+	border-inline-start: var(--wea-toc-indicator-width, 0px) solid transparent;
+	border-radius: 6px;
+	color: var(--e-global-color-text, #4b5563);
+	line-height: 1.45;
+	text-decoration: none;
+	transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.elementor .wea-table-of-contents__item.is-active > .wea-table-of-contents__link {
+	border-inline-start-color: var(--wea-toc-indicator, var(--e-global-color-accent, #5b4cf5));
+	background-color: color-mix(in srgb, var(--e-global-color-accent, #5b4cf5) 9%, transparent);
+	font-weight: 600;
+}
+
+.wea-table-of-contents__link:focus-visible {
+	outline: 2px solid var(--e-global-color-accent, #5b4cf5);
+	outline-offset: 1px;
+}
+
+.wea-table-of-contents__text {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.wea-table-of-contents--ellipsis .wea-table-of-contents__text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* Markers ------------------------------------------------------------------------ */
+
+.wea-table-of-contents__marker {
+	flex: none;
+	color: var(--wea-toc-marker-color, currentColor);
+	font-size: var(--wea-toc-marker-size, 1em);
+	transition: color 0.2s ease;
+}
+
+.wea-table-of-contents__item.is-active > .wea-table-of-contents__link > .wea-table-of-contents__marker {
+	color: var(--wea-toc-marker-active, var(--wea-toc-marker-color, currentColor));
+}
+
+.wea-table-of-contents--marker-numbers .wea-table-of-contents__marker,
+.wea-table-of-contents--marker-nested .wea-table-of-contents__marker {
+	min-inline-size: 1.4em;
+	font-variant-numeric: tabular-nums;
+	opacity: 0.85;
+}
+
+.wea-table-of-contents--marker-bullets .wea-table-of-contents__marker {
+	box-sizing: border-box;
+	align-self: flex-start;
+	inline-size: var(--wea-toc-marker-size, 6px);
+	block-size: var(--wea-toc-marker-size, 6px);
+	margin-block-start: 0.6em;
+	margin-block-start: calc((1lh - var(--wea-toc-marker-size, 6px)) / 2);
+	border: 1.5px solid currentColor;
+	border-radius: 50%;
+	background-color: currentColor;
+	/* Empty box: keep the link's font and line height, so 1lh is one text line. */
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.wea-table-of-contents--marker-bullets .wea-table-of-contents__item[data-depth]:not([data-depth="0"]) > .wea-table-of-contents__link > .wea-table-of-contents__marker {
+	background-color: transparent;
+}
+
+.wea-table-of-contents--marker-icon .wea-table-of-contents__marker {
+	display: inline-flex;
+	align-self: center;
+	font-size: var(--wea-toc-marker-size, 0.8em);
+	line-height: 1;
+}
+
+.wea-table-of-contents__marker svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+/* States --------------------------------------------------------------------------- */
+
+.wea-table-of-contents__placeholder {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 6px 8px;
+}
+
+.wea-table-of-contents__placeholder span {
+	display: block;
+	block-size: 10px;
+	border-radius: 5px;
+	background: linear-gradient(90deg, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.06));
+	background-size: 200% 100%;
+	animation: wea-toc-shimmer 1.4s linear infinite;
+}
+
+.wea-table-of-contents__placeholder span:nth-child(1) {
+	inline-size: 70%;
+}
+
+.wea-table-of-contents__placeholder span:nth-child(2) {
+	inline-size: 55%;
+}
+
+.wea-table-of-contents__placeholder span:nth-child(3) {
+	inline-size: 62%;
+}
+
+.wea-table-of-contents__empty {
+	margin: 0;
+	padding: 4px 8px;
+	font-style: italic;
+	opacity: 0.75;
+}
+
+.wea-table-of-contents__empty[hidden] {
+	display: none;
+}
+
+/* Programmatic focus after a jump: no ring for mouse users, keep it for keyboard users. */
+.wea-toc-target:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@keyframes wea-toc-shimmer {
+	to {
+		background-position: -200% 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wea-table-of-contents__toggle-icon,
+	.elementor .wea-table-of-contents__link,
+	.wea-table-of-contents__marker {
+		transition: none;
+	}
+
+	.wea-table-of-contents__placeholder span {
+		animation: none;
+	}
+}

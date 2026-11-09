@@ -1,0 +1,25 @@
+/**
+ * Wise Display Conditions: editor preview only.
+ *
+ * Marks elements that have display conditions with a dashed outline and a small
+ * badge in the top end corner. Live pages never load this file, because the rules
+ * run on the server.
+ */
+.elementor-editor-active .wea-dc-yes {
+	outline: 1px dashed rgba(91, 76, 245, 0.55);
+	outline-offset: -1px;
+}
+
+.elementor-editor-active .wea-dc-yes::after {
+	content: "";
+	position: absolute;
+	inset-block-start: 3px;
+	inset-inline-end: 3px;
+	z-index: 99;
+	inline-size: 18px;
+	block-size: 18px;
+	border-radius: 50%;
+	background: #5b4cf5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5h18l-7 8v6l-4 2v-8z'/%3E%3C/svg%3E") center / 11px no-repeat;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+	pointer-events: none;
+}

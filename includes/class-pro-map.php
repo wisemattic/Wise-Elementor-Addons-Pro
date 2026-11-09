@@ -41,6 +41,7 @@ final class Pro_Map {
 				'icon'     => 'eicon-nav-menu',
 				'cat'      => 'theme',
 				'class'    => '\\WiseAddonsPro\\Widgets\\Mega_Menu',
+				'dynamic'  => true,
 				'keywords' => [ 'menu', 'mega', 'navigation', 'nav', 'header', 'dropdown' ],
 			],
 			'post-carousel'     => [
@@ -193,8 +194,9 @@ final class Pro_Map {
 		return [
 			'path'   => WISEADDONS_PRO_PATH . $type . '/' . $slug . '/',
 			'url'    => WISEADDONS_PRO_URL . $type . '/' . $slug . '/',
-			'pro'    => true,
-			'is_new' => true,
+			'pro'     => true,
+			'is_new'  => true,
+			'version' => WISEADDONS_PRO_VERSION,
 		];
 	}
 }

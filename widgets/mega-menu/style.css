@@ -1,0 +1,801 @@
+/*
+ * Wise Mega Menu.
+ * Controls set custom properties on .wea-mega-menu; the rules below decide where they apply.
+ * Desktop rules sit under :not(.is-mobile) and mobile rules under .is-mobile (added by the script
+ * below the breakpoint), so the two never fight. Before the script runs, a small inline style
+ * printed with the widget shows the toggle instead of the menu below the breakpoint.
+ */
+
+.wea-mega-menu {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__nav {
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__menu,
+.wea-mega-menu__sub {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-mega-menu__item {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wea-mega-menu__item::marker {
+	content: none;
+}
+
+/* Row: the link and, for parents, the toggle button. */
+.wea-mega-menu__row {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-inline-size: 0;
+	transition: color var(--wea-mm-dur, .2s) ease, background-color var(--wea-mm-dur, .2s) ease;
+}
+
+.wea-mega-menu__link {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	box-sizing: border-box;
+	min-inline-size: 0;
+	font: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	box-shadow: none;
+}
+
+/* Beat the kit and theme link colors (0,1,1) without blocking control selectors. */
+.elementor .wea-mega-menu__link,
+.elementor .wea-mega-menu__link:hover,
+.elementor .wea-mega-menu__link:focus,
+.elementor .wea-mega-menu__link:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.wea-mega-menu__label {
+	min-inline-size: 0;
+}
+
+.wea-mega-menu__icon {
+	flex: none;
+	margin-inline-end: var(--wea-mm-icon-gap, .5em);
+	color: var(--wea-mm-icon-color, currentColor);
+	font-size: var(--wea-mm-icon-size, 1em);
+}
+
+.wea-mega-menu__icon svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.wea-mega-menu__badge {
+	display: inline-block;
+	flex: none;
+	margin-inline-start: var(--wea-mm-badge-gap, .5em);
+	padding: .3em .6em;
+	border-radius: 999px;
+	background-color: var(--e-global-color-accent, #5b4cf5);
+	color: #fff;
+	font-size: .65em;
+	font-weight: 700;
+	line-height: 1.1;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	transform: translateY(var(--wea-mm-badge-shift, 0));
+}
+
+/* Buttons: reset kit and theme button styles. */
+.elementor .wea-mega-menu .wea-mega-menu__arrow,
+.elementor .wea-mega-menu .wea-mega-menu__arrow:hover,
+.elementor .wea-mega-menu .wea-mega-menu__arrow:focus {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: inherit;
+}
+
+.elementor .wea-mega-menu .wea-mega-menu__arrow {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	align-self: stretch;
+	justify-content: center;
+	box-sizing: border-box;
+	inline-size: auto;
+	min-inline-size: 0;
+	block-size: auto;
+	min-block-size: 0;
+	padding: 0;
+	font: inherit;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	cursor: pointer;
+}
+
+.wea-mega-menu__indicator {
+	display: block;
+	inline-size: var(--wea-mm-ind-size, .8em);
+	block-size: var(--wea-mm-ind-size, .8em);
+	transition: transform var(--wea-mm-dur, .2s) ease;
+}
+
+.wea-mega-menu__link:focus-visible,
+.wea-mega-menu__arrow:focus-visible,
+.wea-mega-menu__toggle:focus-visible,
+.wea-mega-menu__close:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
+
+/* Popups are hidden until opened. */
+.wea-mega-menu__sub,
+.wea-mega-menu__mega {
+	display: none;
+	box-sizing: border-box;
+	text-align: start;
+}
+
+.wea-mega-menu__overlay,
+.wea-mega-menu__panel-head {
+	display: none;
+}
+
+/* Toggle button (shown below the breakpoint). */
+.elementor .wea-mega-menu .wea-mega-menu__toggle {
+	display: none;
+	align-items: center;
+	align-self: var(--wea-mm-toggle-align, flex-start);
+	justify-content: center;
+	gap: .5em;
+	box-sizing: border-box;
+	min-inline-size: 44px;
+	min-block-size: 44px;
+	margin: 0;
+	padding: 10px;
+	border: 1px solid var(--wea-mm-tg-bc, transparent);
+	border-radius: 8px;
+	background-color: var(--wea-mm-tg-bg, transparent);
+	box-shadow: none;
+	color: var(--wea-mm-tg-c, var(--e-global-color-text, #1f2937));
+	font: inherit;
+	line-height: 1;
+	text-transform: none;
+	cursor: pointer;
+	transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.elementor .wea-mega-menu .wea-mega-menu__toggle:hover,
+.elementor .wea-mega-menu .wea-mega-menu__toggle:focus-visible,
+.elementor .wea-mega-menu .wea-mega-menu__toggle[aria-expanded="true"] {
+	border-color: var(--wea-mm-tg-bc-h, var(--wea-mm-tg-bc, transparent));
+	background-color: var(--wea-mm-tg-bg-h, var(--wea-mm-tg-bg, transparent));
+	color: var(--wea-mm-tg-c-h, var(--wea-mm-tg-c, var(--e-global-color-text, #1f2937)));
+}
+
+.wea-mega-menu__toggle-icon {
+	display: inline-flex;
+	font-size: var(--wea-mm-toggle-size, 22px);
+	line-height: 1;
+}
+
+.wea-mega-menu__toggle-icon svg,
+.wea-mega-menu__close svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.wea-mega-menu__toggle-icon--close,
+.wea-mega-menu.is-panel-open .wea-mega-menu__toggle-icon--open {
+	display: none;
+}
+
+.wea-mega-menu.is-panel-open .wea-mega-menu__toggle-icon--close {
+	display: inline-flex;
+}
+
+/* ------------------------------------------------------------------ */
+/* Desktop                                                             */
+/* ------------------------------------------------------------------ */
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__menu {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: var(--wea-mm-gap, 4px);
+}
+
+.wea-mega-menu--horizontal:not(.is-mobile) .wea-mega-menu__menu {
+	flex-direction: row;
+	justify-content: var(--wea-mm-justify, flex-start);
+}
+
+.wea-mega-menu--horizontal:not(.is-mobile) .wea-mega-menu__item--top {
+	flex-grow: var(--wea-mm-grow, 0);
+}
+
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__menu {
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row > .wea-mega-menu__link {
+	justify-content: var(--wea-mm-text, flex-start);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item {
+	position: relative;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item.has-mega {
+	position: static;
+}
+
+/* Top-level items */
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row {
+	--wea-mm-ptr-cur: var(--wea-mm-ptr-h, var(--e-global-color-accent, #5b4cf5));
+	block-size: 100%;
+	color: var(--wea-mm-c, var(--e-global-color-text, #1f2937));
+	background-color: var(--wea-mm-bg, transparent);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:hover,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:has(:focus-visible),
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-open > .wea-mega-menu__row {
+	color: var(--wea-mm-c-h, var(--e-global-color-accent, #5b4cf5));
+	background-color: var(--wea-mm-bg-h, var(--wea-mm-bg, transparent));
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current > .wea-mega-menu__row,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current-ancestor > .wea-mega-menu__row {
+	--wea-mm-ptr-cur: var(--wea-mm-ptr-a, var(--wea-mm-ptr-h, var(--e-global-color-accent, #5b4cf5)));
+	color: var(--wea-mm-c-a, var(--wea-mm-c-h, var(--e-global-color-accent, #5b4cf5)));
+	background-color: var(--wea-mm-bg-a, var(--wea-mm-bg-h, var(--wea-mm-bg, transparent)));
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row > .wea-mega-menu__link {
+	padding-block: var(--wea-mm-pt, 10px) var(--wea-mm-pb, 10px);
+	padding-inline: var(--wea-mm-ps, 16px) var(--wea-mm-pe, 16px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row > .wea-mega-menu__link:not(:last-child) {
+	padding-inline-end: var(--wea-mm-ind-gap, 6px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row > .wea-mega-menu__arrow {
+	padding-inline-end: var(--wea-mm-pe, 16px);
+}
+
+/* Indicator direction: down under horizontal top items, towards the end everywhere else. */
+.wea-mega-menu--horizontal:not(.is-mobile) .wea-mega-menu__item--top.is-open > .wea-mega-menu__row .wea-mega-menu__indicator {
+	transform: rotate(180deg);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__indicator,
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row .wea-mega-menu__indicator {
+	transform: rotate(-90deg);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__indicator:dir(rtl),
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row .wea-mega-menu__indicator:dir(rtl) {
+	transform: rotate(90deg);
+}
+
+.wea-mega-menu--indicator-plus:not(.is-mobile) .wea-mega-menu__indicator,
+.wea-mega-menu--indicator-plus:not(.is-mobile) .wea-mega-menu__indicator:dir(rtl) {
+	transform: none;
+}
+
+.wea-mega-menu--indicator-plus:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__row .wea-mega-menu__indicator {
+	transform: rotate(45deg);
+}
+
+/* Indicator "None": the button stays in the tab order and shows only while focused. */
+.wea-mega-menu--indicator-none:not(.is-mobile) .wea-mega-menu__row > .wea-mega-menu__arrow:not(:focus-visible) {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.wea-mega-menu--indicator-none:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row > .wea-mega-menu__link:not(:last-child) {
+	padding-inline-end: var(--wea-mm-pe, 16px);
+}
+
+.wea-mega-menu--indicator-none:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row > .wea-mega-menu__link:not(:last-child) {
+	padding-inline-end: var(--wea-mm-dd-pe, 18px);
+}
+
+/* Pointers on top-level items */
+.wea-mega-menu--pointer-underline:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after,
+.wea-mega-menu--pointer-overline:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before,
+.wea-mega-menu--pointer-double:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before,
+.wea-mega-menu--pointer-double:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	block-size: var(--wea-mm-ptr-w, 2px);
+	background-color: var(--wea-mm-ptr-cur, currentColor);
+	opacity: 0;
+	pointer-events: none;
+	transform: scaleX(0);
+	transition: opacity .25s ease, transform .25s ease;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	inset-block-end: 0;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before {
+	inset-block-start: 0;
+}
+
+.wea-mega-menu--ptr-slide:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before,
+.wea-mega-menu--ptr-slide:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	transform-origin: 0 50%;
+}
+
+.wea-mega-menu--ptr-slide:not(.is-mobile):dir(rtl) .wea-mega-menu__item--top > .wea-mega-menu__row::before,
+.wea-mega-menu--ptr-slide:not(.is-mobile):dir(rtl) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	transform-origin: 100% 50%;
+}
+
+.wea-mega-menu--ptr-fade:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before,
+.wea-mega-menu--ptr-fade:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	transform: none;
+}
+
+.wea-mega-menu--pointer-framed:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border: var(--wea-mm-ptr-w, 2px) solid var(--wea-mm-ptr-cur, currentColor);
+	border-radius: inherit;
+	opacity: 0;
+	pointer-events: none;
+	transform: scale(.92);
+	transition: opacity .25s ease, transform .25s ease;
+}
+
+.wea-mega-menu--pointer-dot:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row::after {
+	content: "";
+	position: absolute;
+	inset-block-end: 2px;
+	inset-inline-start: calc(50% - var(--wea-mm-ptr-w, 2px) * 1.5);
+	inline-size: calc(var(--wea-mm-ptr-w, 2px) * 3);
+	block-size: calc(var(--wea-mm-ptr-w, 2px) * 3);
+	border-radius: 50%;
+	background-color: var(--wea-mm-ptr-cur, currentColor);
+	opacity: 0;
+	pointer-events: none;
+	transform: scale(0);
+	transition: opacity .25s ease, transform .25s ease;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:hover::before,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:hover::after,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:has(:focus-visible)::before,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__row:has(:focus-visible)::after,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-open > .wea-mega-menu__row::before,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-open > .wea-mega-menu__row::after,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current > .wea-mega-menu__row::before,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current > .wea-mega-menu__row::after,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current-ancestor > .wea-mega-menu__row::before,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top.is-current-ancestor > .wea-mega-menu__row::after {
+	opacity: 1;
+	transform: none;
+}
+
+/* Dropdowns */
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub {
+	position: absolute;
+	z-index: var(--wea-mm-z, 1000);
+	inset-block-start: calc(100% + var(--wea-mm-dd-offset, 0px));
+	inset-inline-start: 0;
+	inline-size: max-content;
+	min-inline-size: var(--wea-mm-dd-w, 220px);
+	max-inline-size: min(360px, 92vw);
+	padding: 8px 0;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 18px 40px -14px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__sub,
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__sub {
+	inset-block-start: 0;
+	inset-inline-start: calc(100% + var(--wea-mm-dd-offset, 0px));
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__sub.is-flip {
+	inset-inline-start: auto;
+	inset-inline-end: 0;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__sub.is-flip,
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__sub.is-flip {
+	inset-inline-start: auto;
+	inset-inline-end: calc(100% + var(--wea-mm-dd-offset, 0px));
+}
+
+/* Invisible bridge over the gap, so the pointer can travel to the dropdown. */
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub::before {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	inset-block-end: 100%;
+	block-size: var(--wea-mm-dd-offset, 0px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub .wea-mega-menu__sub::before,
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__item--top > .wea-mega-menu__sub::before {
+	inset-block: 0;
+	inset-inline: auto 100%;
+	inline-size: var(--wea-mm-dd-offset, 0px);
+	block-size: auto;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item + .wea-mega-menu__item {
+	border-block-start: 1px solid var(--wea-mm-dd-div, transparent);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row {
+	color: var(--wea-mm-dd-c, var(--e-global-color-text, #1f2937));
+	background-color: var(--wea-mm-dd-ibg, transparent);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row:hover,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row:has(:focus-visible),
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item.is-open > .wea-mega-menu__row {
+	color: var(--wea-mm-dd-c-h, var(--e-global-color-accent, #5b4cf5));
+	background-color: var(--wea-mm-dd-ibg-h, var(--wea-mm-dd-ibg, rgba(15, 23, 42, .04)));
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item.is-current > .wea-mega-menu__row,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item.is-current-ancestor > .wea-mega-menu__row {
+	color: var(--wea-mm-dd-c-a, var(--wea-mm-dd-c-h, var(--e-global-color-accent, #5b4cf5)));
+	background-color: var(--wea-mm-dd-ibg-a, var(--wea-mm-dd-ibg, transparent));
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row > .wea-mega-menu__link {
+	padding-block: var(--wea-mm-dd-pt, 9px) var(--wea-mm-dd-pb, 9px);
+	padding-inline: var(--wea-mm-dd-ps, 18px) var(--wea-mm-dd-pe, 18px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row > .wea-mega-menu__link:not(:last-child) {
+	padding-inline-end: var(--wea-mm-ind-gap, 6px);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__sub > .wea-mega-menu__item > .wea-mega-menu__row > .wea-mega-menu__arrow {
+	padding-inline-end: var(--wea-mm-dd-pe, 18px);
+}
+
+/* Mega panels. The script sets --wea-mm-x and --wea-mm-w from the chosen width when a panel opens. */
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__mega {
+	position: absolute;
+	z-index: var(--wea-mm-z, 1000);
+	inset-block-start: calc(100% + var(--wea-mm-mega-offset, 0px));
+	left: var(--wea-mm-x, 0);
+	inline-size: var(--wea-mm-w, 100%);
+	max-inline-size: 100vw;
+	padding: 24px;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 24px 48px -16px rgba(15, 23, 42, .3), 0 2px 6px rgba(15, 23, 42, .06);
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__mega--custom {
+	inline-size: var(--wea-mm-cw, 640px);
+}
+
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__mega {
+	inset-block-start: 0;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__mega::before {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	inset-block-end: 100%;
+	block-size: var(--wea-mm-mega-offset, 0px);
+}
+
+.wea-mega-menu--vertical:not(.is-mobile) .wea-mega-menu__mega::before {
+	inset-block: 0;
+	inset-inline: auto 100%;
+	inline-size: var(--wea-mm-mega-offset, 0px);
+	block-size: auto;
+}
+
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item.is-open:not(.has-mega) > .wea-mega-menu__sub,
+.wea-mega-menu:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__mega {
+	display: block;
+}
+
+/* Open and close animations (desktop). */
+.wea-mega-menu--anim-fade:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__sub,
+.wea-mega-menu--anim-fade:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__mega {
+	animation: wea-mm-fade-in var(--wea-mm-dur, .2s) ease both;
+}
+
+.wea-mega-menu--anim-slide:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__sub,
+.wea-mega-menu--anim-slide:not(.is-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__mega {
+	animation: wea-mm-slide-in var(--wea-mm-dur, .2s) ease both;
+}
+
+.wea-mega-menu--anim-fade:not(.is-mobile) .wea-mega-menu__item.is-closing > .wea-mega-menu__sub,
+.wea-mega-menu--anim-fade:not(.is-mobile) .wea-mega-menu__item.is-closing > .wea-mega-menu__mega {
+	animation: wea-mm-fade-out var(--wea-mm-dur, .2s) ease both;
+	pointer-events: none;
+}
+
+.wea-mega-menu--anim-slide:not(.is-mobile) .wea-mega-menu__item.is-closing > .wea-mega-menu__sub,
+.wea-mega-menu--anim-slide:not(.is-mobile) .wea-mega-menu__item.is-closing > .wea-mega-menu__mega {
+	animation: wea-mm-slide-out var(--wea-mm-dur, .2s) ease both;
+	pointer-events: none;
+}
+
+@keyframes wea-mm-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes wea-mm-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes wea-mm-slide-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes wea-mm-slide-out {
+	from {
+		opacity: 1;
+		transform: none;
+	}
+	to {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}
+
+/* ------------------------------------------------------------------ */
+/* Mobile                                                              */
+/* ------------------------------------------------------------------ */
+
+.elementor .wea-mega-menu.is-mobile .wea-mega-menu__toggle {
+	display: inline-flex;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__panel {
+	box-sizing: border-box;
+	background-color: #fff;
+	text-align: start;
+}
+
+/* Off-canvas */
+.wea-mega-menu--mobile-offcanvas.is-mobile .wea-mega-menu__panel {
+	position: fixed;
+	z-index: 100000;
+	inset-block: 0;
+	display: flex;
+	flex-direction: column;
+	inline-size: var(--wea-mm-oc-w, 340px);
+	max-inline-size: 100%;
+	padding: 16px 20px 28px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	box-shadow: 0 0 48px rgba(15, 23, 42, .2);
+	visibility: hidden;
+	transition: transform .3s ease, visibility 0s linear .3s;
+}
+
+.wea-mega-menu--side-right.is-mobile .wea-mega-menu__panel {
+	right: 0;
+	left: auto;
+	transform: translateX(100%);
+}
+
+.wea-mega-menu--side-left.is-mobile .wea-mega-menu__panel {
+	right: auto;
+	left: 0;
+	transform: translateX(-100%);
+}
+
+.wea-mega-menu--mobile-offcanvas.is-mobile.is-panel-open .wea-mega-menu__panel {
+	visibility: visible;
+	transform: none;
+	transition: transform .3s ease, visibility 0s;
+}
+
+.wea-mega-menu--mobile-offcanvas.is-mobile .wea-mega-menu__overlay {
+	position: fixed;
+	z-index: 99999;
+	inset: 0;
+	display: block;
+	background-color: rgba(15, 23, 42, .55);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .3s ease, visibility 0s linear .3s;
+}
+
+.wea-mega-menu--mobile-offcanvas.is-mobile.is-panel-open .wea-mega-menu__overlay {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity .3s ease, visibility 0s;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__panel-head {
+	display: flex;
+	flex: none;
+	justify-content: flex-end;
+	margin-block-end: 8px;
+}
+
+.elementor .wea-mega-menu .wea-mega-menu__close,
+.elementor .wea-mega-menu .wea-mega-menu__close:hover,
+.elementor .wea-mega-menu .wea-mega-menu__close:focus {
+	border: 0;
+	background-color: var(--wea-mm-close-bg, rgba(15, 23, 42, .06));
+	box-shadow: none;
+	color: var(--wea-mm-close-c, var(--e-global-color-text, #1f2937));
+}
+
+.elementor .wea-mega-menu .wea-mega-menu__close {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: content-box;
+	inline-size: 1em;
+	block-size: 1em;
+	min-block-size: 0;
+	margin: 0;
+	padding: .6em;
+	border-radius: 50%;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.wea-mega-menu__close .wea-icon {
+	font-size: inherit;
+}
+
+/* Dropdown below the toggle */
+.wea-mega-menu--mobile-dropdown.is-mobile .wea-mega-menu__panel {
+	position: absolute;
+	z-index: var(--wea-mm-z, 1000);
+	inset-block-start: 100%;
+	left: var(--wea-mm-px, 0);
+	display: none;
+	inline-size: var(--wea-mm-pw, 100%);
+	max-block-size: 75vh;
+	padding: 8px 20px 16px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	box-shadow: 0 18px 32px -14px rgba(15, 23, 42, .3);
+}
+
+.wea-mega-menu--mobile-dropdown.is-mobile.is-panel-open .wea-mega-menu__panel {
+	display: block;
+	animation: wea-mm-fade-in .2s ease both;
+}
+
+/* Items and accordions */
+.wea-mega-menu.is-mobile .wea-mega-menu__item {
+	position: static;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__row {
+	border-block-end: 1px solid var(--wea-mm-m-div, rgba(15, 23, 42, .08));
+	color: var(--wea-mm-m-c, var(--e-global-color-text, #1f2937));
+	background-color: var(--wea-mm-m-bg, transparent);
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__item.is-open > .wea-mega-menu__row,
+.wea-mega-menu.is-mobile .wea-mega-menu__item.is-current > .wea-mega-menu__row,
+.wea-mega-menu.is-mobile .wea-mega-menu__item.is-current-ancestor > .wea-mega-menu__row {
+	color: var(--wea-mm-m-c-a, var(--e-global-color-accent, #5b4cf5));
+	background-color: var(--wea-mm-m-bg-a, var(--wea-mm-m-bg, transparent));
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__row > .wea-mega-menu__link {
+	padding-block: var(--wea-mm-m-pt, 13px) var(--wea-mm-m-pb, 13px);
+	padding-inline: var(--wea-mm-m-ps, 4px) var(--wea-mm-m-pe, 4px);
+}
+
+.elementor .wea-mega-menu.is-mobile .wea-mega-menu__row > .wea-mega-menu__arrow {
+	min-inline-size: 44px;
+	padding: 0;
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__item.is-open > .wea-mega-menu__row .wea-mega-menu__indicator {
+	transform: rotate(180deg);
+}
+
+.wea-mega-menu--indicator-plus.is-mobile .wea-mega-menu__item.is-open > .wea-mega-menu__row .wea-mega-menu__indicator {
+	transform: rotate(45deg);
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__sub {
+	padding-inline-start: var(--wea-mm-m-indent, 16px);
+}
+
+.wea-mega-menu.is-mobile .wea-mega-menu__mega {
+	padding-block: 12px;
+	border-block-end: 1px solid var(--wea-mm-m-div, rgba(15, 23, 42, .08));
+}
+
+.wea-mega-menu.is-mobile.wea-mega-menu--mega-mobile .wea-mega-menu__item.is-open:not(.has-mega) > .wea-mega-menu__sub,
+.wea-mega-menu.is-mobile.wea-mega-menu--mega-mobile .wea-mega-menu__item.is-open > .wea-mega-menu__mega,
+.wea-mega-menu.is-mobile:not(.wea-mega-menu--mega-mobile) .wea-mega-menu__item.is-open > .wea-mega-menu__sub {
+	display: block;
+}
+
+.elementor .wea-mega-menu.is-mobile:not(.wea-mega-menu--mega-mobile) .wea-mega-menu__item.has-mega:not(.has-sub) > .wea-mega-menu__row > .wea-mega-menu__arrow {
+	display: none;
+}
+
+.wea-mega-menu.is-mobile:not(.wea-mega-menu--anim-none) .wea-mega-menu__item.is-open > .wea-mega-menu__sub,
+.wea-mega-menu.is-mobile:not(.wea-mega-menu--anim-none) .wea-mega-menu__item.is-open > .wea-mega-menu__mega {
+	animation: wea-mm-fade-in .25s ease both;
+}
+
+/* Page scroll lock while the off-canvas menu is open. */
+html.wea-mega-menu-lock,
+html.wea-mega-menu-lock body {
+	overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wea-mega-menu__sub,
+	.wea-mega-menu__mega,
+	.wea-mega-menu__panel,
+	.wea-mega-menu__overlay {
+		animation: none !important;
+		transition: none !important;
+	}
+
+	.wea-mega-menu__row::before,
+	.wea-mega-menu__row::after,
+	.wea-mega-menu__indicator {
+		transition: none !important;
+	}
+}

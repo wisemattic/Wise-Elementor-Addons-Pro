@@ -1,0 +1,3002 @@
+# Copyright (C) 2026 Wisemattic
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wise Addons for Elementor Pro 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wise-addons-for-elementor-pro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-09T03:06:36+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wise-addons-for-elementor-pro\n"
+
+#. Plugin Name of the plugin
+#: wise-addons-for-elementor-pro.php
+msgid "Wise Addons for Elementor Pro"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wise-addons-for-elementor-pro.php
+msgid "https://wiseaddons.com/pro/"
+msgstr ""
+
+#. Description of the plugin
+#: wise-addons-for-elementor-pro.php
+msgid "Pro widgets and features for Wise Addons for Elementor: Display Conditions, Sticky Element, Particle Effects, Image Masking, Horizontal Scroll, Live Copy, Mega Menu, Post Carousel, Product Grid and Table of Contents."
+msgstr ""
+
+#. Author of the plugin
+#: wise-addons-for-elementor-pro.php
+msgid "Wisemattic"
+msgstr ""
+
+#. Author URI of the plugin
+#: wise-addons-for-elementor-pro.php
+msgid "https://wisemattic.com/"
+msgstr ""
+
+#: features/display-conditions/feature.php:154
+msgid "Wise Display Conditions"
+msgstr ""
+
+#: features/display-conditions/feature.php:162
+#: includes/class-pro-map.php:89
+msgid "Display Conditions"
+msgstr ""
+
+#: features/display-conditions/feature.php:175
+msgid "Action"
+msgstr ""
+
+#: features/display-conditions/feature.php:181
+msgid "Show"
+msgstr ""
+
+#: features/display-conditions/feature.php:185
+msgid "Hide"
+msgstr ""
+
+#: features/display-conditions/feature.php:198
+msgid "When"
+msgstr ""
+
+#: features/display-conditions/feature.php:202
+msgid "All rules match"
+msgstr ""
+
+#: features/display-conditions/feature.php:203
+msgid "Any rule matches"
+msgstr ""
+
+#: features/display-conditions/feature.php:214
+msgid "Rules"
+msgstr ""
+
+#: features/display-conditions/feature.php:230
+msgid "Rules are checked on the server each time the page is built. The editor always shows the element and marks it with a badge. Rules without a value are ignored. With a full-page cache (cache plugin, host or CDN), rules for date, time, URL parameter, referrer, device, browser and operating system apply to the cached copy, so visitors see the result of whoever loaded it first until the cache refreshes. Login and role rules are fine, because logged-in users normally skip that cache."
+msgstr ""
+
+#: features/display-conditions/feature.php:258
+msgid "Other"
+msgstr ""
+
+#: features/display-conditions/feature.php:278
+msgid "Rule"
+msgstr ""
+
+#: features/display-conditions/feature.php:289
+msgid "Condition"
+msgstr ""
+
+#: features/display-conditions/feature.php:293
+msgid "Is"
+msgstr ""
+
+#: features/display-conditions/feature.php:294
+msgid "Is not"
+msgstr ""
+
+#: features/display-conditions/feature.php:335
+msgid "Not:"
+msgstr ""
+
+#: features/display-conditions/rules.php:51
+#: features/display-conditions/rules.php:72
+msgid "Visitor"
+msgstr ""
+
+#: features/display-conditions/rules.php:52
+msgid "Device and browser"
+msgstr ""
+
+#: features/display-conditions/rules.php:53
+msgid "Date and time"
+msgstr ""
+
+#: features/display-conditions/rules.php:54
+#: features/display-conditions/rules.php:238
+msgid "Page"
+msgstr ""
+
+#: features/display-conditions/rules.php:55
+msgid "URL and referrer"
+msgstr ""
+
+#: features/display-conditions/rules.php:56
+msgid "WooCommerce"
+msgstr ""
+
+#: features/display-conditions/rules.php:68
+msgid "Login status"
+msgstr ""
+
+#: features/display-conditions/rules.php:76
+msgid "Logged in"
+msgstr ""
+
+#: features/display-conditions/rules.php:77
+msgid "Logged out"
+msgstr ""
+
+#: features/display-conditions/rules.php:84
+msgid "User role"
+msgstr ""
+
+#: features/display-conditions/rules.php:88
+msgid "Roles"
+msgstr ""
+
+#: features/display-conditions/rules.php:93
+msgid "Matches a logged-in user with any of these roles. Logged-out visitors never match."
+msgstr ""
+
+#: features/display-conditions/rules.php:99
+msgid "Device type (user agent)"
+msgstr ""
+
+#: features/display-conditions/rules.php:103
+msgid "Device"
+msgstr ""
+
+#: features/display-conditions/rules.php:107
+msgid "Phone or tablet"
+msgstr ""
+
+#: features/display-conditions/rules.php:108
+msgid "Desktop or laptop"
+msgstr ""
+
+#: features/display-conditions/rules.php:110
+msgid "A best guess from the browser's user agent, made on the server. It does not look at the screen width, and some tablets (such as recent iPads) report themselves as desktops. To hide by screen width, use Responsive > Hide On."
+msgstr ""
+
+#: features/display-conditions/rules.php:116
+msgid "Browser"
+msgstr ""
+
+#: features/display-conditions/rules.php:120
+msgid "Browsers"
+msgstr ""
+
+#: features/display-conditions/rules.php:125
+msgid "Chrome"
+msgstr ""
+
+#: features/display-conditions/rules.php:126
+msgid "Safari"
+msgstr ""
+
+#: features/display-conditions/rules.php:127
+msgid "Firefox"
+msgstr ""
+
+#: features/display-conditions/rules.php:128
+msgid "Microsoft Edge"
+msgstr ""
+
+#: features/display-conditions/rules.php:129
+msgid "Opera"
+msgstr ""
+
+#: features/display-conditions/rules.php:130
+msgid "Samsung Internet"
+msgstr ""
+
+#: features/display-conditions/rules.php:131
+msgid "Internet Explorer"
+msgstr ""
+
+#: features/display-conditions/rules.php:133
+msgid "Read from the user agent, which browsers can change or hide."
+msgstr ""
+
+#: features/display-conditions/rules.php:139
+msgid "Operating system"
+msgstr ""
+
+#: features/display-conditions/rules.php:143
+msgid "Systems"
+msgstr ""
+
+#: features/display-conditions/rules.php:148
+msgid "Windows"
+msgstr ""
+
+#: features/display-conditions/rules.php:149
+msgid "macOS"
+msgstr ""
+
+#: features/display-conditions/rules.php:150
+msgid "iOS / iPadOS"
+msgstr ""
+
+#: features/display-conditions/rules.php:151
+msgid "Android"
+msgstr ""
+
+#: features/display-conditions/rules.php:152
+msgid "Linux"
+msgstr ""
+
+#: features/display-conditions/rules.php:153
+msgid "ChromeOS"
+msgstr ""
+
+#: features/display-conditions/rules.php:160
+msgid "Date range"
+msgstr ""
+
+#: features/display-conditions/rules.php:164
+#: features/display-conditions/rules.php:197
+msgid "From"
+msgstr ""
+
+#: features/display-conditions/rules.php:169
+#: features/display-conditions/rules.php:209
+msgid "To"
+msgstr ""
+
+#: features/display-conditions/rules.php:178
+msgid "Day of the week"
+msgstr ""
+
+#: features/display-conditions/rules.php:182
+msgid "Days"
+msgstr ""
+
+#: features/display-conditions/rules.php:193
+msgid "Time of day"
+msgstr ""
+
+#: features/display-conditions/rules.php:219
+msgid "The end time is not included. A range like 22:00 to 06:00 runs overnight. Uses the site timezone."
+msgstr ""
+
+#: features/display-conditions/rules.php:225
+msgid "Page type"
+msgstr ""
+
+#: features/display-conditions/rules.php:229
+msgid "Page types"
+msgstr ""
+
+#: features/display-conditions/rules.php:234
+msgid "Front page"
+msgstr ""
+
+#: features/display-conditions/rules.php:235
+msgid "Blog posts page"
+msgstr ""
+
+#: features/display-conditions/rules.php:236
+msgid "Any single post or page"
+msgstr ""
+
+#: features/display-conditions/rules.php:237
+msgid "Single post (any post type except pages)"
+msgstr ""
+
+#: features/display-conditions/rules.php:239
+msgid "Any archive"
+msgstr ""
+
+#: features/display-conditions/rules.php:240
+msgid "Author archive"
+msgstr ""
+
+#: features/display-conditions/rules.php:241
+msgid "Date archive"
+msgstr ""
+
+#: features/display-conditions/rules.php:242
+msgid "Search results"
+msgstr ""
+
+#: features/display-conditions/rules.php:243
+msgid "Not found (404)"
+msgstr ""
+
+#: features/display-conditions/rules.php:250
+msgid "Specific posts or pages"
+msgstr ""
+
+#: features/display-conditions/rules.php:254
+msgid "IDs or slugs"
+msgstr ""
+
+#: features/display-conditions/rules.php:257
+msgid "e.g. 42, about-us"
+msgstr ""
+
+#: features/display-conditions/rules.php:258
+msgid "Separate with commas. Matches when the visitor is viewing one of these posts or pages."
+msgstr ""
+
+#: features/display-conditions/rules.php:264
+msgid "Post type (single view)"
+msgstr ""
+
+#: features/display-conditions/rules.php:268
+msgid "Post types"
+msgstr ""
+
+#: features/display-conditions/rules.php:278
+msgid "Category, tag or term"
+msgstr ""
+
+#: features/display-conditions/rules.php:282
+msgid "Taxonomy"
+msgstr ""
+
+#: features/display-conditions/rules.php:288
+msgid "Term IDs or slugs"
+msgstr ""
+
+#: features/display-conditions/rules.php:291
+msgid "e.g. news, 12"
+msgstr ""
+
+#: features/display-conditions/rules.php:292
+msgid "Separate with commas. Leave empty for any term."
+msgstr ""
+
+#: features/display-conditions/rules.php:295
+msgid "Where"
+msgstr ""
+
+#: features/display-conditions/rules.php:299
+msgid "On the term's archive page"
+msgstr ""
+
+#: features/display-conditions/rules.php:300
+msgid "On a single post that has the term"
+msgstr ""
+
+#: features/display-conditions/rules.php:301
+msgid "Either"
+msgstr ""
+
+#: features/display-conditions/rules.php:308
+msgid "URL parameter"
+msgstr ""
+
+#: features/display-conditions/rules.php:312
+msgid "Parameter"
+msgstr ""
+
+#: features/display-conditions/rules.php:317
+msgid "Value"
+msgstr ""
+
+#: features/display-conditions/rules.php:319
+msgid "Any value"
+msgstr ""
+
+#: features/display-conditions/rules.php:320
+msgid "Leave empty to match whenever the parameter is in the URL. Otherwise the value must match exactly."
+msgstr ""
+
+#: features/display-conditions/rules.php:326
+msgid "Referrer"
+msgstr ""
+
+#: features/display-conditions/rules.php:330
+msgid "Referrer contains"
+msgstr ""
+
+#: features/display-conditions/rules.php:333
+msgid "e.g. google., facebook.com"
+msgstr ""
+
+#: features/display-conditions/rules.php:334
+msgid "Separate with commas; any one is enough. Many sites and browsers send only the domain, or no referrer at all."
+msgstr ""
+
+#: features/display-conditions/rules.php:343
+msgid "Cart is empty"
+msgstr ""
+
+#: features/display-conditions/rules.php:349
+msgid "Cart subtotal"
+msgstr ""
+
+#: features/display-conditions/rules.php:353
+msgid "At least"
+msgstr ""
+
+#: features/display-conditions/rules.php:357
+msgid "Compared with the subtotal the cart shows, before shipping."
+msgstr ""
+
+#: features/display-conditions/rules.php:363
+msgid "Product in cart"
+msgstr ""
+
+#: features/display-conditions/rules.php:367
+#: widgets/product-grid/widget.php:132
+msgid "Product IDs"
+msgstr ""
+
+#: features/display-conditions/rules.php:370
+msgid "e.g. 12, 57"
+msgstr ""
+
+#: features/display-conditions/rules.php:371
+msgid "Separate with commas; any one is enough. Variation IDs work too."
+msgstr ""
+
+#. translators: %s: timezone name, e.g. Europe/London or UTC+6
+#: features/display-conditions/rules.php:393
+#, php-format
+msgid "Uses the site timezone (%s), set in Settings > General."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:143
+msgid "Wise Horizontal Scroll"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:151
+#: includes/class-pro-map.php:117
+msgid "Horizontal Scroll"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:156
+msgid "The columns become panels in one row. The section pins to the screen and scrolling down slides the panels sideways."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:157
+msgid "The elements inside this container become panels in one row. The container pins to the screen and scrolling down slides the panels sideways."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:166
+#: widgets/mega-menu/widget.php:267
+#: widgets/post-carousel/widget.php:169
+#: widgets/product-grid/widget.php:257
+msgid "Layout"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:172
+msgid "Horizontal scroll"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:173
+msgid "Swipe row"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:174
+msgid "Normal (stacked)"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:176
+msgid "Pick per device. Swipe row is a native sideways scroll, handy on phones. Visitors who ask for reduced motion get the normal layout."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:185
+#: widgets/mega-menu/widget.php:392
+msgid "Panel Width"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:190
+#: widgets/mega-menu/widget.php:397
+msgid "Full width"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:191
+msgid "Element width"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:192
+#: features/image-masking/feature.php:249
+#: features/image-masking/feature.php:308
+#: widgets/mega-menu/widget.php:398
+msgid "Custom"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:207
+#: features/image-masking/feature.php:265
+#: features/particle-effects/feature.php:333
+#: widgets/post-carousel/widget.php:835
+msgid "Width"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:236
+#: widgets/post-carousel/widget.php:514
+msgid "Gap"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:245
+msgid "Empty: the container gap."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:254
+msgid "Scroll Speed"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:265
+msgid "Above 1 the row moves faster than the page and the pinned part is shorter."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:274
+#: widgets/mega-menu/widget.php:1304
+msgid "Top Offset"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:283
+msgid "Room for a sticky header. The WordPress toolbar is added on its own."
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:292
+msgid "Snap to Panels"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:303
+#: widgets/post-carousel/widget.php:656
+msgid "Progress Bar"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:317
+msgid "Bar Color"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:328
+msgid "Track Color"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:338
+#: widgets/post-carousel/widget.php:1403
+msgid "Bar Height"
+msgstr ""
+
+#: features/horizontal-scroll/feature.php:356
+msgid "Keep each panel within the screen height. Pinning needs every parent element to keep Overflow on Default."
+msgstr ""
+
+#: features/image-masking/feature.php:47
+msgid "Soft Blob"
+msgstr ""
+
+#: features/image-masking/feature.php:48
+msgid "Wavy Blob"
+msgstr ""
+
+#: features/image-masking/feature.php:49
+msgid "Pebble"
+msgstr ""
+
+#: features/image-masking/feature.php:50
+#: features/particle-effects/feature.php:251
+msgid "Circle"
+msgstr ""
+
+#: features/image-masking/feature.php:51
+msgid "Squircle"
+msgstr ""
+
+#: features/image-masking/feature.php:52
+msgid "Arch"
+msgstr ""
+
+#: features/image-masking/feature.php:53
+msgid "Hexagon"
+msgstr ""
+
+#: features/image-masking/feature.php:54
+#: features/particle-effects/feature.php:253
+msgid "Triangle"
+msgstr ""
+
+#: features/image-masking/feature.php:55
+msgid "Diamond"
+msgstr ""
+
+#: features/image-masking/feature.php:56
+#: features/particle-effects/feature.php:254
+msgid "Star"
+msgstr ""
+
+#: features/image-masking/feature.php:57
+msgid "Heart"
+msgstr ""
+
+#: features/image-masking/feature.php:58
+#: widgets/mega-menu/widget.php:476
+#: widgets/mega-menu/widget.php:1332
+#: widgets/post-carousel/widget.php:909
+msgid "Badge"
+msgstr ""
+
+#: features/image-masking/feature.php:59
+msgid "Cloud"
+msgstr ""
+
+#: features/image-masking/feature.php:60
+msgid "Wave"
+msgstr ""
+
+#: features/image-masking/feature.php:61
+msgid "Brush Stroke"
+msgstr ""
+
+#: features/image-masking/feature.php:146
+msgid "Wise Image Masking"
+msgstr ""
+
+#: features/image-masking/feature.php:154
+#: includes/class-pro-map.php:110
+msgid "Image Masking"
+msgstr ""
+
+#: features/image-masking/feature.php:158
+msgid "Shows the element only inside a shape. Works best on Image, Image Box and Video widgets."
+msgstr ""
+
+#: features/image-masking/feature.php:165
+msgid "Apply To"
+msgstr ""
+
+#: features/image-masking/feature.php:169
+msgid "Whole widget"
+msgstr ""
+
+#: features/image-masking/feature.php:170
+msgid "Images and videos only"
+msgstr ""
+
+#: features/image-masking/feature.php:180
+msgid "Mask"
+msgstr ""
+
+#: features/image-masking/feature.php:186
+msgid "Built-in shape"
+msgstr ""
+
+#: features/image-masking/feature.php:190
+msgid "Custom image (SVG or PNG)"
+msgstr ""
+
+#: features/image-masking/feature.php:212
+#: features/particle-effects/feature.php:245
+msgid "Shape"
+msgstr ""
+
+#: features/image-masking/feature.php:228
+msgid "Mask Image"
+msgstr ""
+
+#: features/image-masking/feature.php:232
+msgid "Opaque parts of the image show the element, transparent parts hide it. Use an SVG or a PNG with transparency from this site."
+msgstr ""
+
+#: features/image-masking/feature.php:241
+#: widgets/mega-menu/widget.php:1651
+#: widgets/table-of-contents/widget.php:734
+msgid "Size"
+msgstr ""
+
+#: features/image-masking/feature.php:246
+msgid "Contain (whole shape)"
+msgstr ""
+
+#: features/image-masking/feature.php:247
+msgid "Cover (fill, crop shape)"
+msgstr ""
+
+#: features/image-masking/feature.php:248
+msgid "Stretch to fit"
+msgstr ""
+
+#: features/image-masking/feature.php:295
+#: widgets/mega-menu/widget.php:1419
+msgid "Position"
+msgstr ""
+
+#: features/image-masking/feature.php:299
+msgid "Center Center"
+msgstr ""
+
+#: features/image-masking/feature.php:300
+msgid "Center Left"
+msgstr ""
+
+#: features/image-masking/feature.php:301
+msgid "Center Right"
+msgstr ""
+
+#: features/image-masking/feature.php:302
+msgid "Top Center"
+msgstr ""
+
+#: features/image-masking/feature.php:303
+msgid "Top Left"
+msgstr ""
+
+#: features/image-masking/feature.php:304
+msgid "Top Right"
+msgstr ""
+
+#: features/image-masking/feature.php:305
+msgid "Bottom Center"
+msgstr ""
+
+#: features/image-masking/feature.php:306
+msgid "Bottom Left"
+msgstr ""
+
+#: features/image-masking/feature.php:307
+msgid "Bottom Right"
+msgstr ""
+
+#: features/image-masking/feature.php:318
+msgid "X Position"
+msgstr ""
+
+#: features/image-masking/feature.php:318
+msgid "Y Position"
+msgstr ""
+
+#: features/image-masking/feature.php:349
+#: features/image-masking/feature.php:354
+msgid "Repeat"
+msgstr ""
+
+#: features/image-masking/feature.php:353
+msgid "No repeat"
+msgstr ""
+
+#: features/image-masking/feature.php:355
+msgid "Repeat horizontally"
+msgstr ""
+
+#: features/image-masking/feature.php:356
+msgid "Repeat vertically"
+msgstr ""
+
+#: features/image-masking/feature.php:357
+msgid "Repeat with space"
+msgstr ""
+
+#: features/image-masking/feature.php:358
+msgid "Repeat and fit"
+msgstr ""
+
+#: features/live-copy/class-importer.php:142
+msgid "The clipboard does not contain an element copied with Wise Copy or Elementor."
+msgstr ""
+
+#: features/live-copy/class-importer.php:160
+msgid "This content was copied with a newer version of Wise Addons Pro. Update the plugin on this site and paste again."
+msgstr ""
+
+#: features/live-copy/feature.php:106
+msgid "Wise Live Copy"
+msgstr ""
+
+#: features/live-copy/feature.php:114
+msgid "Allow Live Copy on the live site"
+msgstr ""
+
+#: features/live-copy/feature.php:127
+msgid "Visitors of the published page see a Copy button on this element. It copies the element’s design (not form recipients or API keys), so it can be pasted into another Elementor site with Wise Paste. Leave it off for anything you do not want to share."
+msgstr ""
+
+#: features/live-copy/feature.php:177
+msgid "Copy"
+msgstr ""
+
+#: features/live-copy/feature.php:178
+msgid "Copy this section"
+msgstr ""
+
+#: features/live-copy/feature.php:179
+msgid "Copying…"
+msgstr ""
+
+#: features/live-copy/feature.php:180
+msgid "Copied!"
+msgstr ""
+
+#: features/live-copy/feature.php:181
+msgid "Copied. In your Elementor editor, right-click and choose “Wise Paste”."
+msgstr ""
+
+#: features/live-copy/feature.php:182
+msgid "Copy failed. Please try again."
+msgstr ""
+
+#: features/live-copy/feature.php:183
+msgid "Your browser blocked the clipboard. Copy the text below with Ctrl+C (⌘C on Mac)."
+msgstr ""
+
+#: features/live-copy/feature.php:184
+msgid "Close"
+msgstr ""
+
+#: features/live-copy/feature.php:185
+msgid "Copy section"
+msgstr ""
+
+#: features/live-copy/feature.php:324
+msgid "Sorry, you are not allowed to paste content here."
+msgstr ""
+
+#: features/live-copy/feature.php:354
+msgid "The copied content could not be prepared for this site."
+msgstr ""
+
+#: features/live-copy/feature.php:360
+msgid "Nothing can be pasted: every copied element needs a widget that is not installed on this site."
+msgstr ""
+
+#: features/live-copy/feature.php:389
+msgid "This element cannot be copied."
+msgstr ""
+
+#: features/live-copy/feature.php:489
+msgid "Too many copy requests. Please wait a minute and try again."
+msgstr ""
+
+#: features/particle-effects/feature.php:153
+#: features/particle-effects/feature.php:189
+#: features/particle-effects/feature.php:250
+#: features/particle-effects/feature.php:291
+msgid "Preset"
+msgstr ""
+
+#: features/particle-effects/feature.php:168
+msgid "Wise Particle Effects"
+msgstr ""
+
+#: features/particle-effects/feature.php:176
+msgid "Particles"
+msgstr ""
+
+#: features/particle-effects/feature.php:180
+msgid "Draws moving particles over the background. They pause off-screen, and visitors who ask for reduced motion see them still."
+msgstr ""
+
+#: features/particle-effects/feature.php:193
+msgid "Network (linked dots)"
+msgstr ""
+
+#: features/particle-effects/feature.php:194
+msgid "Bubbles"
+msgstr ""
+
+#: features/particle-effects/feature.php:195
+msgid "Snow"
+msgstr ""
+
+#: features/particle-effects/feature.php:196
+msgid "Twinkling stars"
+msgstr ""
+
+#: features/particle-effects/feature.php:197
+msgid "Confetti"
+msgstr ""
+
+#: features/particle-effects/feature.php:208
+msgid "Each preset sets its own look. Leave a control empty to keep the preset value."
+msgstr ""
+
+#: features/particle-effects/feature.php:214
+msgid "Particle Count"
+msgstr ""
+
+#: features/particle-effects/feature.php:216
+msgid "Empty: set by the preset and scaled to the element size, so phones get fewer. 0 turns particles off on that device."
+msgstr ""
+
+#: features/particle-effects/feature.php:222
+msgid "Colors"
+msgstr ""
+
+#. translators: %d: color number.
+#: features/particle-effects/feature.php:234
+#, php-format
+msgid "Color %d"
+msgstr ""
+
+#: features/particle-effects/feature.php:252
+msgid "Square"
+msgstr ""
+
+#: features/particle-effects/feature.php:255
+msgid "Mixed (confetti)"
+msgstr ""
+
+#: features/particle-effects/feature.php:256
+#: features/particle-effects/feature.php:266
+#: widgets/post-carousel/widget.php:267
+#: widgets/post-carousel/widget.php:823
+#: widgets/product-grid/widget.php:360
+#: widgets/product-grid/widget.php:817
+msgid "Image"
+msgstr ""
+
+#: features/particle-effects/feature.php:269
+msgid "A small PNG or SVG from this site works best. Colors do not apply to images."
+msgstr ""
+
+#: features/particle-effects/feature.php:275
+msgid "Min Size"
+msgstr ""
+
+#: features/particle-effects/feature.php:276
+msgid "Max Size"
+msgstr ""
+
+#: features/particle-effects/feature.php:277
+#: features/particle-effects/feature.php:332
+msgid "Opacity"
+msgstr ""
+
+#: features/particle-effects/feature.php:279
+msgid "Speed"
+msgstr ""
+
+#: features/particle-effects/feature.php:281
+msgid "1 is the preset speed, 0 stops the movement."
+msgstr ""
+
+#: features/particle-effects/feature.php:287
+msgid "Direction"
+msgstr ""
+
+#: features/particle-effects/feature.php:292
+#: widgets/product-grid/widget.php:200
+msgid "Random"
+msgstr ""
+
+#: features/particle-effects/feature.php:293
+msgid "Up"
+msgstr ""
+
+#: features/particle-effects/feature.php:294
+msgid "Up right"
+msgstr ""
+
+#: features/particle-effects/feature.php:295
+#: widgets/mega-menu/widget.php:674
+msgid "Right"
+msgstr ""
+
+#: features/particle-effects/feature.php:296
+msgid "Down right"
+msgstr ""
+
+#: features/particle-effects/feature.php:297
+msgid "Down"
+msgstr ""
+
+#: features/particle-effects/feature.php:298
+msgid "Down left"
+msgstr ""
+
+#: features/particle-effects/feature.php:299
+#: widgets/mega-menu/widget.php:670
+msgid "Left"
+msgstr ""
+
+#: features/particle-effects/feature.php:300
+msgid "Up left"
+msgstr ""
+
+#: features/particle-effects/feature.php:313
+msgid "Link Lines"
+msgstr ""
+
+#: features/particle-effects/feature.php:320
+#: widgets/mega-menu/widget.php:1160
+msgid "Distance"
+msgstr ""
+
+#: features/particle-effects/feature.php:325
+#: widgets/mega-menu/widget.php:1499
+#: widgets/mega-menu/widget.php:1507
+#: widgets/mega-menu/widget.php:1670
+#: widgets/post-carousel/widget.php:1013
+#: widgets/post-carousel/widget.php:1019
+#: widgets/post-carousel/widget.php:1066
+#: widgets/post-carousel/widget.php:1143
+#: widgets/post-carousel/widget.php:1423
+#: widgets/product-grid/widget.php:992
+#: widgets/product-grid/widget.php:1002
+#: widgets/product-grid/widget.php:1008
+#: widgets/product-grid/widget.php:1121
+#: widgets/table-of-contents/widget.php:712
+msgid "Color"
+msgstr ""
+
+#: features/particle-effects/feature.php:339
+msgid "On Hover"
+msgstr ""
+
+#: features/particle-effects/feature.php:344
+#: features/particle-effects/feature.php:373
+msgid "Nothing"
+msgstr ""
+
+#: features/particle-effects/feature.php:345
+msgid "Grab (link to pointer)"
+msgstr ""
+
+#: features/particle-effects/feature.php:346
+msgid "Repulse (push away)"
+msgstr ""
+
+#: features/particle-effects/feature.php:347
+msgid "Bubble (grow)"
+msgstr ""
+
+#: features/particle-effects/feature.php:357
+msgid "Hover Radius"
+msgstr ""
+
+#: features/particle-effects/feature.php:369
+msgid "On Click"
+msgstr ""
+
+#: features/particle-effects/feature.php:374
+msgid "Add particles"
+msgstr ""
+
+#: features/particle-effects/feature.php:385
+msgid "Layer"
+msgstr ""
+
+#: features/particle-effects/feature.php:392
+msgid "Behind the content"
+msgstr ""
+
+#: features/particle-effects/feature.php:396
+msgid "In front of the content"
+msgstr ""
+
+#: features/particle-effects/feature.php:412
+#: features/sticky-element/feature.php:215
+msgid "Z-Index"
+msgstr ""
+
+#: features/particle-effects/feature.php:416
+msgid "Optional. Overrides the layer for unusual stacking."
+msgstr ""
+
+#: features/particle-effects/feature.php:425
+msgid "Turn Off on Mobile"
+msgstr ""
+
+#: features/sticky-element/feature.php:106
+#: widgets/table-of-contents/widget.php:877
+msgid "Desktop"
+msgstr ""
+
+#: features/sticky-element/feature.php:121
+msgid "Wise Sticky"
+msgstr ""
+
+#: features/sticky-element/feature.php:129
+msgid "Sticky"
+msgstr ""
+
+#: features/sticky-element/feature.php:141
+msgid "Stick To"
+msgstr ""
+
+#: features/sticky-element/feature.php:147
+#: widgets/post-carousel/widget.php:218
+msgid "Top"
+msgstr ""
+
+#: features/sticky-element/feature.php:151
+#: widgets/post-carousel/widget.php:226
+msgid "Bottom"
+msgstr ""
+
+#: features/sticky-element/feature.php:164
+#: widgets/post-carousel/widget.php:973
+#: widgets/product-grid/widget.php:239
+#: widgets/product-grid/widget.php:913
+msgid "Offset"
+msgstr ""
+
+#: features/sticky-element/feature.php:183
+msgid "Devices"
+msgstr ""
+
+#: features/sticky-element/feature.php:198
+msgid "Stay Within"
+msgstr ""
+
+#: features/sticky-element/feature.php:202
+msgid "Whole page"
+msgstr ""
+
+#: features/sticky-element/feature.php:203
+msgid "Parent element"
+msgstr ""
+
+#: features/sticky-element/feature.php:205
+msgid "\"Parent element\" lets go when the end of the parent container, column or section scrolls past. Use \"Whole page\" for headers."
+msgstr ""
+
+#: features/sticky-element/feature.php:228
+msgid "Hide on Scroll Down"
+msgstr ""
+
+#: features/sticky-element/feature.php:231
+msgid "Slides out while visitors scroll down and comes back as soon as they scroll up. Handy for headers."
+msgstr ""
+
+#: features/sticky-element/feature.php:241
+msgid "While Stuck"
+msgstr ""
+
+#: features/sticky-element/feature.php:259
+#: widgets/mega-menu/widget.php:897
+#: widgets/mega-menu/widget.php:904
+#: widgets/mega-menu/widget.php:912
+#: widgets/mega-menu/widget.php:1091
+#: widgets/mega-menu/widget.php:1202
+#: widgets/mega-menu/widget.php:1209
+#: widgets/mega-menu/widget.php:1216
+#: widgets/mega-menu/widget.php:1359
+#: widgets/mega-menu/widget.php:1500
+#: widgets/mega-menu/widget.php:1508
+#: widgets/mega-menu/widget.php:1598
+#: widgets/mega-menu/widget.php:1682
+#: widgets/mega-menu/widget.php:1717
+#: widgets/mega-menu/widget.php:1724
+#: widgets/table-of-contents/widget.php:430
+#: widgets/table-of-contents/widget.php:611
+#: widgets/table-of-contents/widget.php:855
+msgid "Background Color"
+msgstr ""
+
+#: features/sticky-element/feature.php:278
+#: widgets/mega-menu/widget.php:1120
+#: widgets/mega-menu/widget.php:1264
+#: widgets/mega-menu/widget.php:1371
+#: widgets/mega-menu/widget.php:1475
+#: widgets/mega-menu/widget.php:1609
+#: widgets/post-carousel/widget.php:952
+#: widgets/post-carousel/widget.php:1237
+#: widgets/product-grid/widget.php:907
+#: widgets/product-grid/widget.php:1238
+#: widgets/table-of-contents/widget.php:441
+msgid "Padding"
+msgstr ""
+
+#: features/sticky-element/feature.php:290
+msgid "The \"While Stuck\" style applies through the wea-is-stuck class, which you can also use in your own CSS. Sticky works in the editor preview too; switch devices to check each one."
+msgstr ""
+
+#: includes/admin/class-license-page.php:69
+msgid "Pro License"
+msgstr ""
+
+#: includes/admin/class-license-page.php:108
+msgid "You are not allowed to do that."
+msgstr ""
+
+#: includes/admin/class-license-page.php:116
+msgid "Your license is active. The Pro widgets and features are on."
+msgstr ""
+
+#: includes/admin/class-license-page.php:119
+msgid "The license was deactivated on this site. You can now activate it on another site."
+msgstr ""
+
+#: includes/admin/class-license-page.php:122
+msgid "License checked."
+msgstr ""
+
+#: includes/admin/class-license-page.php:148
+#: widgets/mega-menu/widget.php:909
+#: widgets/mega-menu/widget.php:1213
+#: widgets/mega-menu/widget.php:1721
+#: widgets/table-of-contents/widget.php:590
+msgid "Active"
+msgstr ""
+
+#: includes/admin/class-license-page.php:149
+msgid "Expired"
+msgstr ""
+
+#: includes/admin/class-license-page.php:150
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/class-license-page.php:152
+msgid "Not active"
+msgstr ""
+
+#: includes/admin/class-license-page.php:170
+msgid "Wise Addons Pro"
+msgstr ""
+
+#: includes/admin/class-license-page.php:171
+msgid "Activate your license to turn on the Pro widgets and features and get updates."
+msgstr ""
+
+#: includes/admin/class-license-page.php:182
+#: includes/class-plugin.php:162
+msgid "License"
+msgstr ""
+
+#: includes/admin/class-license-page.php:189
+msgid "License key"
+msgstr ""
+
+#: includes/admin/class-license-page.php:192
+msgid "Activate"
+msgstr ""
+
+#: includes/admin/class-license-page.php:195
+msgid "Your key is in the purchase email from Lemon Squeezy and in your orders at"
+msgstr ""
+
+#: includes/admin/class-license-page.php:201
+msgid "Key"
+msgstr ""
+
+#: includes/admin/class-license-page.php:204
+msgid "Plan"
+msgstr ""
+
+#: includes/admin/class-license-page.php:208
+msgid "Licensed to"
+msgstr ""
+
+#: includes/admin/class-license-page.php:211
+msgid "Expires"
+msgstr ""
+
+#: includes/admin/class-license-page.php:212
+msgid "Never (lifetime)"
+msgstr ""
+
+#: includes/admin/class-license-page.php:214
+msgid "Sites"
+msgstr ""
+
+#. translators: 1: sites used, 2: site limit
+#: includes/admin/class-license-page.php:219
+#, php-format
+msgid "%1$d of %2$d used"
+msgstr ""
+
+#: includes/admin/class-license-page.php:226
+msgid "Last checked"
+msgstr ""
+
+#. translators: %s: time ago
+#: includes/admin/class-license-page.php:227
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/admin/class-license-page.php:231
+msgid "Your Pro widgets keep working. Renew the license to get updates and new Pro features."
+msgstr ""
+
+#: includes/admin/class-license-page.php:241
+msgid "Check now"
+msgstr ""
+
+#: includes/admin/class-license-page.php:247
+msgid "Deactivate on this site"
+msgstr ""
+
+#: includes/admin/class-license-page.php:254
+msgid "Included in Pro"
+msgstr ""
+
+#: includes/admin/class-license-page.php:261
+msgid "Manage license"
+msgstr ""
+
+#: includes/admin/class-license-page.php:262
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/class-license-page.php:263
+msgid "Support"
+msgstr ""
+
+#: includes/class-license.php:147
+msgid "Enter your license key."
+msgstr ""
+
+#: includes/class-license.php:178
+msgid "This license key is for a different product. Use your Wise Addons Pro license key."
+msgstr ""
+
+#: includes/class-license.php:349
+msgid "Could not reach the license server. Please try again in a few minutes."
+msgstr ""
+
+#: includes/class-license.php:354
+msgid "The license server did not answer correctly. Please try again in a few minutes."
+msgstr ""
+
+#: includes/class-license.php:367
+msgid "The license key is not valid."
+msgstr ""
+
+#: includes/class-plugin.php:133
+msgid "Wise Addons for Elementor Pro needs the free Wise Addons for Elementor plugin. Install and activate it to use the Pro widgets."
+msgstr ""
+
+#. translators: %s: version number
+#: includes/class-plugin.php:137
+#, php-format
+msgid "Wise Addons for Elementor Pro needs Wise Addons for Elementor %s or newer. Update the free plugin to use the Pro widgets."
+msgstr ""
+
+#. translators: %s: link to the license page
+#: includes/class-plugin.php:147
+#, php-format
+msgid "Activate your Wise Addons Pro license to turn on the Pro widgets and features. %s"
+msgstr ""
+
+#: includes/class-plugin.php:148
+msgid "Activate license"
+msgstr ""
+
+#: includes/class-pro-map.php:39
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/class-pro-map.php:40
+msgid "Navigation menu with mega dropdowns built from Elementor templates, and a mobile off-canvas menu."
+msgstr ""
+
+#: includes/class-pro-map.php:48
+msgid "Post Carousel"
+msgstr ""
+
+#: includes/class-pro-map.php:49
+msgid "Posts or any post type in a touch-friendly carousel with several card layouts."
+msgstr ""
+
+#: includes/class-pro-map.php:61
+msgid "Product Grid"
+msgstr ""
+
+#: includes/class-pro-map.php:62
+msgid "WooCommerce products in a styled grid with filters, badges, ratings and add to cart."
+msgstr ""
+
+#: includes/class-pro-map.php:71
+#: widgets/table-of-contents/widget.php:61
+#: widgets/table-of-contents/widget.php:70
+msgid "Table of Contents"
+msgstr ""
+
+#: includes/class-pro-map.php:72
+msgid "Automatic, collapsible table of contents built from the headings on the page, with scroll spy."
+msgstr ""
+
+#: includes/class-pro-map.php:90
+msgid "Show or hide any element by login state, user role, device, date and time, page, URL parameter and more."
+msgstr ""
+
+#: includes/class-pro-map.php:96
+msgid "Sticky Element"
+msgstr ""
+
+#: includes/class-pro-map.php:97
+msgid "Pin any element, column or container while scrolling, inside its parent or the whole page."
+msgstr ""
+
+#: includes/class-pro-map.php:103
+msgid "Particle Effects"
+msgstr ""
+
+#: includes/class-pro-map.php:104
+msgid "Animated particle backgrounds for containers and sections: links, bubbles, snow, stars."
+msgstr ""
+
+#: includes/class-pro-map.php:111
+msgid "Cut images and other elements into shapes, or use your own SVG or PNG mask."
+msgstr ""
+
+#: includes/class-pro-map.php:118
+msgid "Turn vertical scrolling into a horizontal slide through the items of a container."
+msgstr ""
+
+#: includes/class-pro-map.php:124
+msgid "Live Copy"
+msgstr ""
+
+#: includes/class-pro-map.php:125
+msgid "Copy a section on one site and paste it into the Elementor editor of another, with its images."
+msgstr ""
+
+#: includes/class-updater.php:176
+msgid "Your license has expired. Renew it to download this update."
+msgstr ""
+
+#: includes/class-updater.php:177
+msgid "Activate your license to download this update."
+msgstr ""
+
+#: includes/class-updater.php:178
+msgid "License settings"
+msgstr ""
+
+#. translators: %s: menu item title.
+#: widgets/mega-menu/class-walker.php:214
+#, php-format
+msgid "%s submenu"
+msgstr ""
+
+#. translators: %s: menu item title.
+#: widgets/mega-menu/class-walker.php:214
+msgid "Item"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:113
+#: widgets/post-carousel/widget.php:1746
+msgid "(no title)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:144
+msgid "Choose a menu item"
+msgstr ""
+
+#. translators: 1: device name, 2: width in pixels.
+#: widgets/mega-menu/widget.php:165
+#, php-format
+msgid "%1$s and below (%2$dpx)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:171
+msgid "Tablet and below (1024px)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:172
+msgid "Mobile and below (767px)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:176
+msgid "None (always the desktop menu)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:228
+msgid "Manage menus"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:234
+#: widgets/mega-menu/widget.php:256
+#: widgets/mega-menu/widget.php:742
+#: widgets/mega-menu/widget.php:1963
+msgid "Menu"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:243
+msgid "There are no menus yet. Create one, add your pages and links, then choose it here."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:246
+#: widgets/mega-menu/widget.php:1858
+msgid "Create a menu"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:271
+msgid "Horizontal"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:272
+msgid "Vertical"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:281
+#: widgets/post-carousel/widget.php:191
+#: widgets/product-grid/widget.php:323
+#: widgets/product-grid/widget.php:1262
+msgid "Alignment"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:285
+#: widgets/mega-menu/widget.php:766
+#: widgets/post-carousel/widget.php:195
+#: widgets/product-grid/widget.php:327
+#: widgets/product-grid/widget.php:1266
+msgid "Start"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:289
+#: widgets/mega-menu/widget.php:770
+#: widgets/post-carousel/widget.php:199
+#: widgets/product-grid/widget.php:331
+#: widgets/product-grid/widget.php:1270
+msgid "Center"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:293
+#: widgets/mega-menu/widget.php:774
+#: widgets/post-carousel/widget.php:203
+#: widgets/product-grid/widget.php:335
+#: widgets/product-grid/widget.php:1274
+msgid "End"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:297
+msgid "Justified"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:316
+msgid "Sub-menu Indicator"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:320
+msgid "Chevron"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:321
+msgid "Caret"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:322
+msgid "Plus"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:323
+#: widgets/mega-menu/widget.php:584
+#: widgets/mega-menu/widget.php:972
+#: widgets/post-carousel/widget.php:653
+#: widgets/product-grid/widget.php:645
+#: widgets/table-of-contents/widget.php:118
+#: widgets/table-of-contents/widget.php:626
+msgid "None"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:325
+msgid "With None the toggle button stays reachable by keyboard and shows when focused. The mobile menu always shows it."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:332
+#: widgets/post-carousel/widget.php:665
+msgid "Accessible Name"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:335
+msgid "Main"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:336
+msgid "Read by screen readers for this navigation. Leave empty to use the menu name."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:351
+msgid "Mega Items"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:359
+msgid "Pick a top-level item of the chosen menu and a saved template to show as its mega panel. Items without a template keep their normal dropdown and can still get an icon or a badge."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:369
+msgid "Menu Item"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:380
+msgid "Mega Panel Template"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:382
+msgid "None (normal dropdown)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:385
+msgid "Create templates under Templates > Saved Templates."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:396
+msgid "Container width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:407
+msgid "Custom Width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:437
+msgid "Panel Alignment"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:443
+msgid "Start of item"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:447
+msgid "Center of item"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:451
+msgid "End of item"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:465
+#: widgets/post-carousel/widget.php:436
+#: widgets/table-of-contents/widget.php:122
+msgid "Icon"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:479
+#: widgets/product-grid/widget.php:555
+#: widgets/product-grid/widget.php:579
+#: widgets/product-grid/widget.php:922
+#: widgets/product-grid/widget.php:1655
+msgid "New"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:487
+msgid "Badge Text Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:499
+msgid "Badge Background"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:511
+#: widgets/mega-menu/widget.php:1178
+#: widgets/mega-menu/widget.php:1694
+msgid "Items"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:530
+msgid "Dropdowns"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:537
+msgid "Open On"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:541
+#: widgets/mega-menu/widget.php:901
+#: widgets/mega-menu/widget.php:1206
+#: widgets/mega-menu/widget.php:1505
+#: widgets/post-carousel/widget.php:694
+#: widgets/product-grid/widget.php:704
+#: widgets/table-of-contents/widget.php:589
+#: widgets/table-of-contents/widget.php:837
+msgid "Hover"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:542
+msgid "Click"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:550
+msgid "Open Delay (ms)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:556
+msgid "A short pause stops menus from flashing open while the pointer passes over them."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:564
+msgid "Close Delay (ms)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:578
+msgid "Animation"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:582
+#: widgets/mega-menu/widget.php:992
+msgid "Fade"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:583
+msgid "Slide up"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:592
+msgid "Animation Duration (ms)"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:612
+msgid "Show First Mega Panel in Editor"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:616
+msgid "Keeps the first mega panel open while you style it. Visitors never see this."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:633
+msgid "Mobile Menu"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:640
+msgid "Breakpoint"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:650
+#: widgets/post-carousel/widget.php:451
+msgid "Style"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:654
+msgid "Off-canvas panel"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:655
+msgid "Dropdown below"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:664
+msgid "Slide In From"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:685
+#: widgets/product-grid/widget.php:1185
+msgid "Full Width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:689
+msgid "Stretches the dropdown to the width of the screen."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:697
+msgid "Show Mega Panels"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:701
+msgid "Turn off to show the normal sub-items of mega items instead of their templates."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:709
+#: widgets/table-of-contents/widget.php:246
+msgid "Toggle Icon"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:725
+msgid "Close Icon"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:740
+msgid "Toggle Label"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:743
+msgid "Also the name screen readers announce for the button and the panel."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:751
+msgid "Show Label"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:762
+msgid "Toggle Alignment"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:865
+msgid "Menu Bar"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:882
+msgid "Bar Background"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:894
+#: widgets/mega-menu/widget.php:1199
+#: widgets/mega-menu/widget.php:1497
+#: widgets/mega-menu/widget.php:1714
+#: widgets/post-carousel/widget.php:694
+#: widgets/product-grid/widget.php:704
+#: widgets/table-of-contents/widget.php:588
+#: widgets/table-of-contents/widget.php:836
+msgid "Normal"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:896
+#: widgets/mega-menu/widget.php:903
+#: widgets/mega-menu/widget.php:911
+#: widgets/mega-menu/widget.php:1201
+#: widgets/mega-menu/widget.php:1208
+#: widgets/mega-menu/widget.php:1215
+#: widgets/mega-menu/widget.php:1348
+#: widgets/mega-menu/widget.php:1716
+#: widgets/mega-menu/widget.php:1723
+#: widgets/post-carousel/widget.php:928
+#: widgets/post-carousel/widget.php:939
+#: widgets/post-carousel/widget.php:1191
+#: widgets/post-carousel/widget.php:1201
+#: widgets/product-grid/widget.php:938
+#: widgets/product-grid/widget.php:1196
+#: widgets/product-grid/widget.php:1210
+#: widgets/product-grid/widget.php:1304
+#: widgets/product-grid/widget.php:1314
+#: widgets/table-of-contents/widget.php:595
+msgid "Text Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:905
+#: widgets/mega-menu/widget.php:913
+msgid "Pointer Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:923
+msgid "Hover colors also show while a dropdown is open. Active colors mark the current page and its parents."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:930
+#: widgets/mega-menu/widget.php:1193
+#: widgets/mega-menu/widget.php:1708
+#: widgets/table-of-contents/widget.php:558
+msgid "Item Padding"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:938
+msgid "Space Between Items"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:956
+#: widgets/table-of-contents/widget.php:570
+msgid "Item Border Radius"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:968
+msgid "Pointer"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:973
+#: widgets/table-of-contents/widget.php:622
+#: widgets/table-of-contents/widget.php:627
+msgid "Underline"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:974
+msgid "Overline"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:975
+msgid "Double line"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:976
+msgid "Frame"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:977
+msgid "Dot"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:986
+msgid "Pointer Animation"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:990
+msgid "Grow from center"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:991
+msgid "Slide from start"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1001
+msgid "Pointer Thickness"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1027
+msgid "Icons & Indicators"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1033
+#: widgets/mega-menu/widget.php:1457
+#: widgets/post-carousel/widget.php:1287
+#: widgets/table-of-contents/widget.php:788
+msgid "Icon Size"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1034
+msgid "Icon Spacing"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1035
+msgid "Indicator Size"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1036
+msgid "Indicator Spacing"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1062
+#: widgets/post-carousel/widget.php:1084
+#: widgets/post-carousel/widget.php:1319
+#: widgets/post-carousel/widget.php:1329
+#: widgets/table-of-contents/widget.php:844
+msgid "Icon Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1064
+msgid "Leave empty to follow the text color."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1083
+msgid "Dropdown"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1102
+msgid "Min Width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1140
+#: widgets/mega-menu/widget.php:1284
+#: widgets/mega-menu/widget.php:1383
+#: widgets/mega-menu/widget.php:1537
+#: widgets/post-carousel/widget.php:770
+#: widgets/post-carousel/widget.php:850
+#: widgets/post-carousel/widget.php:963
+#: widgets/post-carousel/widget.php:1227
+#: widgets/post-carousel/widget.php:1307
+#: widgets/product-grid/widget.php:769
+#: widgets/product-grid/widget.php:846
+#: widgets/product-grid/widget.php:908
+#: widgets/product-grid/widget.php:1237
+#: widgets/product-grid/widget.php:1326
+#: widgets/table-of-contents/widget.php:371
+#: widgets/table-of-contents/widget.php:824
+msgid "Border Radius"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1225
+#: widgets/mega-menu/widget.php:1733
+msgid "Divider Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1246
+msgid "Mega Panel"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1313
+msgid "Space between the menu bar and the panel, for example to start the panel at the bottom of a taller header."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1401
+#: widgets/post-carousel/widget.php:1028
+#: widgets/post-carousel/widget.php:1105
+#: widgets/post-carousel/widget.php:1152
+#: widgets/product-grid/widget.php:1018
+#: widgets/product-grid/widget.php:1084
+#: widgets/product-grid/widget.php:1148
+#: widgets/table-of-contents/widget.php:752
+msgid "Spacing"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1423
+msgid "Next to the label"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1424
+msgid "Raised"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1448
+#: widgets/table-of-contents/widget.php:779
+msgid "Toggle Button"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1501
+#: widgets/mega-menu/widget.php:1509
+#: widgets/post-carousel/widget.php:795
+#: widgets/post-carousel/widget.php:1209
+#: widgets/product-grid/widget.php:789
+#: widgets/product-grid/widget.php:1218
+msgid "Border Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1518
+msgid "Border Width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1566
+msgid "Mobile Panel"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1575
+msgid "Off-canvas Width"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1629
+#: widgets/post-carousel/widget.php:751
+msgid "Overlay Color"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1641
+msgid "Close Button"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1745
+msgid "Sub-menu Indent"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1856
+msgid "Mega Menu: there are no menus yet."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1866
+msgid "Mega Menu: this menu has no items yet."
+msgstr ""
+
+#: widgets/mega-menu/widget.php:1868
+msgid "Edit the menu"
+msgstr ""
+
+#: widgets/mega-menu/widget.php:2044
+msgid "Close menu"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:121
+#: widgets/product-grid/widget.php:107
+msgid "Query"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:133
+msgid "Terms"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:139
+msgid "Show only items in these terms. Terms that do not belong to the chosen source are ignored."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:147
+msgid "Authors"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:176
+msgid "Card Layout"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:180
+msgid "Classic (image on top)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:181
+msgid "Overlay (text over image)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:182
+msgid "Side (image at start)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:183
+msgid "Minimal (no image)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:214
+msgid "Content Position"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:222
+msgid "Middle"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:243
+msgid "Equal Height Cards"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:260
+#: widgets/product-grid/widget.php:353
+msgid "Card Content"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:290
+#: widgets/product-grid/widget.php:379
+msgid "Image Aspect Ratio"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:294
+#: widgets/table-of-contents/widget.php:625
+#: widgets/table-of-contents/widget.php:643
+msgid "Default"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:314
+msgid "Category Badge"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:324
+#: widgets/post-carousel/widget.php:994
+#: widgets/product-grid/widget.php:198
+#: widgets/product-grid/widget.php:409
+#: widgets/product-grid/widget.php:962
+#: widgets/table-of-contents/widget.php:68
+msgid "Title"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:334
+#: widgets/product-grid/widget.php:426
+#: widgets/table-of-contents/widget.php:79
+msgid "Title HTML Tag"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:345
+#: widgets/post-carousel/widget.php:1049
+msgid "Meta"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:352
+msgid "Author"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:353
+#: widgets/product-grid/widget.php:194
+msgid "Date"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:354
+msgid "Comments"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:355
+msgid "Reading Time"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:371
+msgid "Words per Minute"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:376
+msgid "Reading time is the post word count divided by this number."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:384
+msgid "Meta Icons"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:393
+#: widgets/post-carousel/widget.php:1125
+msgid "Excerpt"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:403
+msgid "Excerpt Length (words)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:415
+#: widgets/post-carousel/widget.php:1172
+msgid "Read More"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:425
+#: widgets/product-grid/widget.php:535
+msgid "Text"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:427
+#: widgets/post-carousel/widget.php:1761
+msgid "Read more"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:455
+msgid "Link"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:456
+#: widgets/product-grid/widget.php:1167
+msgid "Button"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:465
+#: widgets/product-grid/widget.php:496
+msgid "Nothing Found Message"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:467
+msgid "No posts found."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:483
+msgid "Carousel"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:490
+msgid "Slides per View"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:503
+msgid "Slides to Scroll"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:528
+msgid "Center Active Slide"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:537
+msgid "Infinite Loop"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:546
+msgid "Transition Duration (ms)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:558
+msgid "Autoplay"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:562
+msgid "Autoplay never runs for visitors who ask their system for reduced motion."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:569
+msgid "Delay (ms)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:582
+msgid "Pause on Hover"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:592
+msgid "Stop on Interaction"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:602
+#: widgets/post-carousel/widget.php:1268
+msgid "Arrows"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:612
+msgid "Previous Icon"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:623
+msgid "Next Icon"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:634
+msgid "Arrows Position"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:638
+msgid "Inside"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:639
+msgid "Outside"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:649
+#: widgets/post-carousel/widget.php:1362
+#: widgets/product-grid/widget.php:634
+#: widgets/product-grid/widget.php:641
+#: widgets/product-grid/widget.php:1253
+msgid "Pagination"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:654
+msgid "Dots"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:655
+msgid "Fraction (1 / 8)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:667
+msgid "Latest posts"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:668
+msgid "Announced by screen readers for this carousel."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:721
+#: widgets/product-grid/widget.php:753
+msgid "Card"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:729
+#: widgets/product-grid/widget.php:758
+msgid "Content Padding"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:739
+msgid "Card Height"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:781
+#: widgets/post-carousel/widget.php:791
+#: widgets/post-carousel/widget.php:932
+#: widgets/post-carousel/widget.php:943
+#: widgets/post-carousel/widget.php:1195
+#: widgets/post-carousel/widget.php:1205
+#: widgets/post-carousel/widget.php:1323
+#: widgets/post-carousel/widget.php:1333
+#: widgets/product-grid/widget.php:775
+#: widgets/product-grid/widget.php:785
+#: widgets/product-grid/widget.php:826
+#: widgets/product-grid/widget.php:946
+#: widgets/product-grid/widget.php:1200
+#: widgets/product-grid/widget.php:1214
+#: widgets/product-grid/widget.php:1308
+#: widgets/product-grid/widget.php:1318
+msgid "Background"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:803
+#: widgets/product-grid/widget.php:797
+msgid "Lift (px)"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:861
+msgid "Inner Spacing"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:865
+msgid "Space between the image and the card edge."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:874
+#: widgets/product-grid/widget.php:859
+msgid "Zoom on Hover"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:977
+msgid "Distance from the image corner."
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1075
+msgid "Link Hover Color"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1094
+msgid "Gap Between Items"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1247
+#: widgets/post-carousel/widget.php:1371
+#: widgets/product-grid/widget.php:1285
+msgid "Spacing Above"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1277
+#: widgets/table-of-contents/widget.php:806
+msgid "Button Size"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1297
+msgid "Horizontal Offset"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1381
+msgid "Dot Size"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1392
+msgid "Dot Gap"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1432
+#: widgets/table-of-contents/widget.php:723
+msgid "Active Color"
+msgstr ""
+
+#. translators: %s: number of comments.
+#: widgets/post-carousel/widget.php:1616
+#, php-format
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: minutes needed to read the post.
+#: widgets/post-carousel/widget.php:1627
+#, php-format
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: post title. Completes the "Read more" link text for screen readers.
+#: widgets/post-carousel/widget.php:1767
+#, php-format
+msgid "about %s"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1831
+msgid "Posts"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1838
+msgid "carousel"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1875
+msgid "slide"
+msgstr ""
+
+#. translators: 1: slide number, 2: total slides.
+#: widgets/post-carousel/widget.php:1877
+#, php-format
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1887
+msgid "Previous slide"
+msgstr ""
+
+#: widgets/post-carousel/widget.php:1888
+msgid "Next slide"
+msgstr ""
+
+#: widgets/product-grid/widget.php:114
+msgid "Source"
+msgstr ""
+
+#: widgets/product-grid/widget.php:118
+msgid "Recent Products"
+msgstr ""
+
+#: widgets/product-grid/widget.php:119
+msgid "Featured Products"
+msgstr ""
+
+#: widgets/product-grid/widget.php:120
+msgid "On Sale"
+msgstr ""
+
+#: widgets/product-grid/widget.php:121
+msgid "Best Selling"
+msgstr ""
+
+#: widgets/product-grid/widget.php:122
+msgid "Top Rated"
+msgstr ""
+
+#: widgets/product-grid/widget.php:123
+msgid "By Categories / Tags"
+msgstr ""
+
+#: widgets/product-grid/widget.php:124
+msgid "Manual Selection"
+msgstr ""
+
+#: widgets/product-grid/widget.php:135
+msgid "Comma-separated product IDs."
+msgstr ""
+
+#: widgets/product-grid/widget.php:144
+msgid "Categories"
+msgstr ""
+
+#: widgets/product-grid/widget.php:157
+msgid "Tags"
+msgstr ""
+
+#: widgets/product-grid/widget.php:170
+msgid "Exclude Product IDs"
+msgstr ""
+
+#: widgets/product-grid/widget.php:181
+msgid "Exclude Out of Stock"
+msgstr ""
+
+#: widgets/product-grid/widget.php:190
+msgid "Order By"
+msgstr ""
+
+#: widgets/product-grid/widget.php:195
+#: widgets/product-grid/widget.php:456
+#: widgets/product-grid/widget.php:1103
+msgid "Price"
+msgstr ""
+
+#: widgets/product-grid/widget.php:196
+msgid "Popularity (sales)"
+msgstr ""
+
+#: widgets/product-grid/widget.php:197
+msgid "Average Rating"
+msgstr ""
+
+#: widgets/product-grid/widget.php:199
+msgid "Menu Order"
+msgstr ""
+
+#: widgets/product-grid/widget.php:201
+msgid "Product IDs Order"
+msgstr ""
+
+#: widgets/product-grid/widget.php:210
+msgid "Order"
+msgstr ""
+
+#: widgets/product-grid/widget.php:214
+msgid "Descending"
+msgstr ""
+
+#: widgets/product-grid/widget.php:215
+msgid "Ascending"
+msgstr ""
+
+#: widgets/product-grid/widget.php:227
+msgid "Products per Page"
+msgstr ""
+
+#: widgets/product-grid/widget.php:264
+msgid "Card Style"
+msgstr ""
+
+#: widgets/product-grid/widget.php:268
+msgid "Classic"
+msgstr ""
+
+#: widgets/product-grid/widget.php:269
+msgid "Actions on Hover"
+msgstr ""
+
+#: widgets/product-grid/widget.php:270
+msgid "Minimal"
+msgstr ""
+
+#: widgets/product-grid/widget.php:271
+msgid "Bordered"
+msgstr ""
+
+#: widgets/product-grid/widget.php:279
+msgid "Columns"
+msgstr ""
+
+#: widgets/product-grid/widget.php:301
+msgid "Column Gap"
+msgstr ""
+
+#: widgets/product-grid/widget.php:312
+msgid "Row Gap"
+msgstr ""
+
+#: widgets/product-grid/widget.php:383
+msgid "Default (1:1)"
+msgstr ""
+
+#: widgets/product-grid/widget.php:389
+msgid "Original"
+msgstr ""
+
+#: widgets/product-grid/widget.php:399
+msgid "Show Second Image on Hover"
+msgstr ""
+
+#: widgets/product-grid/widget.php:402
+msgid "Uses the first image of the product gallery."
+msgstr ""
+
+#: widgets/product-grid/widget.php:408
+#: widgets/product-grid/widget.php:961
+msgid "Category"
+msgstr ""
+
+#: widgets/product-grid/widget.php:437
+#: widgets/product-grid/widget.php:1038
+msgid "Rating"
+msgstr ""
+
+#: widgets/product-grid/widget.php:446
+msgid "Show Stars Without Reviews"
+msgstr ""
+
+#: widgets/product-grid/widget.php:465
+#: widgets/product-grid/widget.php:963
+msgid "Short Description"
+msgstr ""
+
+#: widgets/product-grid/widget.php:474
+msgid "Length (words)"
+msgstr ""
+
+#: widgets/product-grid/widget.php:486
+msgid "Add to Cart Button"
+msgstr ""
+
+#: widgets/product-grid/widget.php:489
+msgid "WooCommerce's own button: simple products are added with AJAX, other types link to the product."
+msgstr ""
+
+#: widgets/product-grid/widget.php:498
+msgid "No products found."
+msgstr ""
+
+#: widgets/product-grid/widget.php:514
+#: widgets/product-grid/widget.php:894
+msgid "Badges"
+msgstr ""
+
+#. translators: %d: discount in percent.
+#: widgets/product-grid/widget.php:521
+#: widgets/product-grid/widget.php:546
+#: widgets/product-grid/widget.php:921
+#: widgets/product-grid/widget.php:1648
+msgid "Sale"
+msgstr ""
+
+#: widgets/product-grid/widget.php:530
+msgid "Sale Badge Shows"
+msgstr ""
+
+#: widgets/product-grid/widget.php:534
+msgid "Discount (-25%)"
+msgstr ""
+
+#: widgets/product-grid/widget.php:544
+msgid "Sale Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:547
+msgid "Also used when the discount cannot be worked out, for example on grouped products."
+msgstr ""
+
+#: widgets/product-grid/widget.php:565
+msgid "New for (days)"
+msgstr ""
+
+#: widgets/product-grid/widget.php:577
+msgid "New Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:587
+#: widgets/product-grid/widget.php:923
+msgid "Out of Stock"
+msgstr ""
+
+#: widgets/product-grid/widget.php:597
+msgid "Out of Stock Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:599
+#: widgets/product-grid/widget.php:1644
+msgid "Sold out"
+msgstr ""
+
+#: widgets/product-grid/widget.php:607
+#: widgets/product-grid/widget.php:619
+#: widgets/product-grid/widget.php:924
+#: widgets/product-grid/widget.php:1660
+msgid "Featured"
+msgstr ""
+
+#: widgets/product-grid/widget.php:617
+msgid "Featured Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:646
+msgid "Page Numbers"
+msgstr ""
+
+#: widgets/product-grid/widget.php:647
+msgid "Load More Button"
+msgstr ""
+
+#: widgets/product-grid/widget.php:655
+msgid "Button Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:657
+#: widgets/product-grid/widget.php:1991
+msgid "Load more"
+msgstr ""
+
+#: widgets/product-grid/widget.php:665
+msgid "Loading Text"
+msgstr ""
+
+#: widgets/product-grid/widget.php:667
+#: widgets/product-grid/widget.php:2001
+msgid "Loading…"
+msgstr ""
+
+#: widgets/product-grid/widget.php:675
+msgid "Page Limit"
+msgstr ""
+
+#: widgets/product-grid/widget.php:680
+msgid "Leave empty for no limit."
+msgstr ""
+
+#: widgets/product-grid/widget.php:835
+msgid "Image Fit"
+msgstr ""
+
+#: widgets/product-grid/widget.php:839
+msgid "Cover"
+msgstr ""
+
+#: widgets/product-grid/widget.php:840
+msgid "Contain"
+msgstr ""
+
+#: widgets/product-grid/widget.php:850
+msgid "Margin"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1047
+msgid "Star Size"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1057
+msgid "Star Color"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1066
+msgid "Empty Star Color"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1075
+msgid "Count Color"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1130
+msgid "Sale Price Color"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1139
+msgid "Old Price Color"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1334
+msgid "Load More Padding"
+msgstr ""
+
+#. translators: %d: discount in percent.
+#: widgets/product-grid/widget.php:1648
+#, php-format
+msgid "-%d%%"
+msgstr ""
+
+#. translators: %s: average rating.
+#: widgets/product-grid/widget.php:1689
+#, php-format
+msgid "Rated %s out of 5"
+msgstr ""
+
+#. translators: %s: average rating.
+#: widgets/product-grid/widget.php:1689
+msgid "Not rated yet"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1693
+msgid "review"
+msgid_plural "reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: widgets/product-grid/widget.php:1967
+msgid "Previous page"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1968
+msgid "Next page"
+msgstr ""
+
+#: widgets/product-grid/widget.php:1974
+msgid "Products pages"
+msgstr ""
+
+#. translators: %d: number of products added to the grid.
+#: widgets/product-grid/widget.php:2003
+#, php-format
+msgid "%d more products loaded."
+msgstr ""
+
+#: widgets/product-grid/widget.php:2004
+msgid "All products are shown."
+msgstr ""
+
+#: widgets/product-grid/widget.php:2005
+msgid "Could not load more products. Please try again."
+msgstr ""
+
+#: widgets/product-grid/widget.php:2038
+msgid "Your store has no published products yet. Add products in WooCommerce > Products and they will show up here."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:89
+msgid "Include Headings"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:102
+msgid "Hierarchy"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:105
+msgid "Nested"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:106
+msgid "Flat"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:115
+#: widgets/table-of-contents/widget.php:703
+msgid "Markers"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:119
+msgid "Numbers"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:120
+msgid "Nested Numbers (1.1)"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:121
+msgid "Bullets"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:131
+msgid "Marker Icon"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:145
+msgid "No Headings Message"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:147
+msgid "No headings were found on this page."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:149
+msgid "Shown only in the editor. On the live site the widget hides itself when there is nothing to list."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:164
+msgid "Headings Source"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:171
+msgid "Look For Headings In"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:174
+msgid "Post Content"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:175
+msgid "Whole Page"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:176
+msgid "Custom CSS Selector"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:185
+msgid "Container Selector"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:197
+msgid "Exclude"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:202
+msgid "CSS selectors, comma separated. Headings that match, or sit inside an element that matches, are left out. The class wea-toc-exclude always works."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:216
+msgid "Behavior"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:223
+msgid "Collapsible"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:233
+msgid "Collapsed By Default On"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:254
+msgid "Turns upside down while the list is open."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:262
+msgid "Smooth Scroll"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:273
+msgid "Scroll Offset"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:282
+msgid "Space left above the heading, for example the height of a sticky header. The WordPress toolbar is added automatically."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:292
+msgid "Highlight Current Heading"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:302
+msgid "List Max Height"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:325
+msgid "One Line Per Item"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:329
+msgid "Long headings are cut with an ellipsis."
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:345
+msgid "Box"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:401
+msgid "Header"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:418
+msgid "Title Color"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:453
+msgid "Separator Width"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:472
+msgid "Separator Color"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:492
+msgid "List"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:509
+msgid "List Padding"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:521
+msgid "Space Between"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:539
+msgid "Nested Indent"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:640
+msgid "Font Weight"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:659
+msgid "Indicator Color"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:670
+msgid "Indicator Width"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:885
+msgid "Tablet"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:886
+msgid "Mobile"
+msgstr ""
+
+#: widgets/table-of-contents/widget.php:1006
+#: widgets/table-of-contents/widget.php:1031
+msgid "Table of contents"
+msgstr ""

@@ -83,10 +83,28 @@ final class Plugin {
 
 		Pro_Map::init();
 
+		// Widget files load only when Elementor renders a page, so endpoints that widgets
+		// need on admin-ajax or REST requests are loaded here.
+		add_action( 'init', [ $this, 'load_endpoints' ], 20 );
+
 		/**
 		 * Fires after Wise Addons Pro has added its widgets and features.
 		 */
 		do_action( 'wiseaddons_pro/loaded' );
+	}
+
+	/**
+	 * Load the AJAX endpoints of active Pro widgets.
+	 */
+	public function load_endpoints() {
+		$active = class_exists( '\WiseAddons\Settings' ) ? \WiseAddons\Settings::active_widgets() : [];
+
+		// Product Grid "Load more".
+		$file = WISEADDONS_PRO_PATH . 'widgets/product-grid/load-more.php';
+		if ( in_array( 'product-grid', $active, true ) && class_exists( 'WooCommerce' ) && file_exists( $file ) ) {
+			require_once $file;
+			Widgets\Product_Grid_Load_More::init();
+		}
 	}
 
 	/**
